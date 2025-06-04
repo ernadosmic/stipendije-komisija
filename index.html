@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator za Stipendiju</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container my-4 p-0 shadow-lg rounded-4 bg-white">
+        <header class="bg-primary bg-gradient text-white p-4 rounded-top-4 mb-0">
+            <h1 class="display-5 fw-bold">Kalkulator za Stipendiju</h1>
+
+        </header>
+        <div class="form-container p-4">
+            <form id="stipendija-form">
+                <div class="section mb-4">
+                    <h2 class="mb-4">Osnovne Informacije</h2>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="subject-number" class="form-label">Broj predmeta:</label>
+                            <input type="text" id="subject-number" class="form-control"
+                                placeholder="Unesite broj predmeta">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="jmbg" class="form-label">JMBG:</label>
+                            <input type="text" id="jmbg" class="form-control" placeholder="Unesite JMBG">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="surname" class="form-label">Prezime:</label>
+                            <input type="text" id="surname" class="form-control" placeholder="Unesite prezime">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="father-name" class="form-label">Ime oca:</label>
+                            <input type="text" id="father-name" class="form-control" placeholder="Unesite ime oca">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Ime:</label>
+                            <input type="text" id="name" class="form-control" placeholder="Unesite ime">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nationality" class="form-label">Nacionalnost:</label>
+                            <select id="nationality" class="form-select">
+                                <option value="">Odaberite...</option>
+                                <option value="Bošnjak">Bošnjak</option>
+                                <option value="Hrvat">Hrvat</option>
+                                <option value="Srbin">Srbin</option>
+                                <option value="Ostali">Ostali</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Broj telefona:</label>
+                            <input type="text" id="phone" class="form-control" placeholder="Unesite broj telefona">
+                        </div>
+                        <div class="col-12">
+                            <label for="faculty" class="form-label">Naziv fakulteta:</label>
+                            <input type="text" id="faculty" class="form-control" placeholder="Unesite naziv fakulteta">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="average-grade" class="form-label">Prosjek ocjena:</label>
+                            <input type="number" id="average-grade" class="form-control" step="0.01" min="1" max="10"
+                                placeholder="Unesite prosjek ocjena">
+                        </div>
+                        <div class="col-md-6 d-flex align-items-end">
+                            <span class="result ms-2" id="grade-points">Bodovi: 0</span>
+                        </div>
+                    </div>
+                    <div class="grades-section mt-4">
+                        <h3 class="mb-3">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h3>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="grade1" class="form-label">Mama - I:</label>
+                                <input type="number" id="grade1" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja majke">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade2" class="form-label">Mama - II:</label>
+                                <input type="number" id="grade2" class="form-control" min="0" step="0.01"
+                                    placeholder="Dodatna primanja majke">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade3" class="form-label">Mama - III:</label>
+                                <input type="number" id="grade3" class="form-control" min="0" step="0.01"
+                                    placeholder="Ostala primanja majke">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade4" class="form-label">Tata - I:</label>
+                                <input type="number" id="grade4" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja oca">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade5" class="form-label">Tata - II:</label>
+                                <input type="number" id="grade5" class="form-control" min="0" step="0.01"
+                                    placeholder="Dodatna primanja oca">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade6" class="form-label">Tata - III:</label>
+                                <input type="number" id="grade6" class="form-control" min="0" step="0.01"
+                                    placeholder="Ostala primanja oca">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
+                                <input type="number" id="grade7" class="form-control" min="0" step="0.01"
+                                    placeholder="Ostala primanja">
+                            </div>
+                        </div>
+                        <div class="calculation-results mt-3">
+                            <div class="result" id="total-average">Ukupan prosjek (R4): 0</div>
+                            <div class="result" id="ratio">Ratio (S4): 0</div>
+                            <div class="result" id="ratio-points">Bodovi za ratio (T4): 0</div>
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-3">
+                        <div class="col-md-6">
+                            <label for="credits" class="form-label">Broj bodova/ECTS:</label>
+                            <input type="number" id="credits" class="form-control" min="1"
+                                placeholder="Unesite ukupan broj bodova">
+                        </div>
+                    </div>
+                </div>
+                <div class="section mb-4">
+                    <h2 class="mb-4">Dodatni Kriteriji</h2>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="u4" class="form-label">Posebna:</label>
+                            <input type="number" id="u4" class="form-control" step="0.01"
+                                placeholder="Unesite posebnu vrijednost">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="v4" class="form-label">Invalida:</label>
+                            <input type="number" id="v4" class="form-control" step="0.01"
+                                placeholder="Unesite vrijednost za invaliditet">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="w4" class="form-label">Fakultet:</label>
+                            <input type="number" id="w4" class="form-control" step="0.01"
+                                placeholder="Fakultetska vrijednost">
+                        </div>
+                    </div>
+                    <div class="result mt-3" id="x4-points">X4 Bodovi: 0</div>
+                </div>
+                <div class="section mb-4">
+                    <h2 class="mb-4">Porodične Prilike (upisuje se 1)</h2>
+                    <div class="row g-2">
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="y4">
+                                <label class="form-check-label" for="y4">Boračka (50 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="z4">
+                                <label class="form-check-label" for="z4">Bez oba roditelja (25 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="aa4">
+                                <label class="form-check-label" for="aa4">Vojnih invalida (20 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ab4">
+                                <label class="form-check-label" for="ab4">Poginulih za oslobođenje (15 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ac4">
+                                <label class="form-check-label" for="ac4">Mučenika (10 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ad4">
+                                <label class="form-check-label" for="ad4">Ratnih vojnih invalida (5 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ae4">
+                                <label class="form-check-label" for="ae4">Časnih žena i domobrana (10 bodova)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="af4">
+                                <label class="form-check-label" for="af4">Studenata koji polažu (20 bodova)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result mt-3" id="ag4-points">AG4 Bodovi: 0</div>
+                </div>
+                <div class="section mb-4">
+                    <h2 class="mb-4">Dostignuto obrazovanje (godina studija)</h2>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-6">
+                            <label for="ah4" class="form-label">Godina studija (1-6):</label>
+                            <select id="ah4" class="form-select">
+                                <option value="">Odaberite godinu</option>
+                                <option value="1">1 - Greška</option>
+                                <option value="2">2 - 5 bodova</option>
+                                <option value="3">3 - 10 bodova</option>
+                                <option value="4">4 - 15 bodova</option>
+                                <option value="5">5 - 20 bodova</option>
+                                <option value="6">6 - 25 bodova</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="result ms-2" id="ai4-points">AI4 Bodovi: 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section mb-4">
+                    <h2 class="mb-4">Završne Kategorije</h2>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="aj4">
+                                <label class="form-check-label" for="aj4">BUDŽET (studijski/finansijski/stručni) (30
+                                    bodova)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ak4">
+                                <label class="form-check-label" for="ak4">SAMOFINANSIRANJE (studij na vlastiti trošak)
+                                    (25 bodova)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result mt-3" id="al4-points">AL4 Bodovi: 0</div>
+                </div>
+                <div class="total-section p-4 rounded-4 bg-light">
+                    <h2 class="mb-4">Ukupan Rezultat</h2>
+                    <div class="total-breakdown mb-3">
+                        <div class="breakdown-item">
+                            <span>Bodovi za Ocjene (I4):</span>
+                            <span id="total-i4">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Bodovi za Ratio (T4):</span>
+                            <span id="total-t4">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Dodatni Bodovi (X4):</span>
+                            <span id="total-x4">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Bodovi za Kategorije (AG4):</span>
+                            <span id="total-ag4">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Bodovi za Ocjenu (AI4):</span>
+                            <span id="total-ai4">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Završni Bodovi (AL4):</span>
+                            <span id="total-al4">0</span>
+                        </div>
+                    </div>
+                    <div class="final-total bg-white shadow-sm rounded-3 p-3 mb-3">
+                        <strong>Ukupno Bodova (AM): <span id="final-total">0</span></strong>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                        <button id="export-excel-finish" type="button" class="btn btn-success btn-lg">Završi i izvezi u
+                            Excel
+                        </button>
+                        <button id="export-excel-append" type="button" class="btn btn-outline-primary btn-lg">Dodaj još
+                            jedan
+                            unos</button>
+                        <button id="load-session" type="button" class="btn btn-warning btn-lg">Učitaj prethodnu sesiju
+                        </button>
+                        <input type="file" id="load-session-input" accept="application/json" style="display:none;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <!-- Toast will be injected here by JS -->
+    </div>
+</body>
+
+</html>
