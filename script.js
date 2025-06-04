@@ -24,7 +24,19 @@ let allEntries = [];
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function () {
+    // Store original placeholders for income fields
+    ['grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6', 'grade7'].forEach(id => {
+        const field = document.getElementById(id);
+        if (field) {
+            field.setAttribute('data-original-placeholder', field.placeholder);
+        }
+    });
+
     setupEventListeners();
+
+    // Initialize radio button states
+    initializeRadioButtonStates();
+
     calculateAll();
 
     // JMBG validation
@@ -41,6 +53,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Initialize radio button states on page load
+function initializeRadioButtonStates() {
+    const radioGroups = [
+        { group: 'mama1-radio', field: 'grade1' },
+        { group: 'mama2-radio', field: 'grade2' },
+        { group: 'mama3-radio', field: 'grade3' },
+        { group: 'tata1-radio', field: 'grade4' },
+        { group: 'tata2-radio', field: 'grade5' },
+        { group: 'tata3-radio', field: 'grade6' }
+    ];
+
+    radioGroups.forEach(({ group, field }) => {
+        const selectedRadio = document.querySelector(`input[name="${group}"]:checked`);
+        if (selectedRadio) {
+            handleRadioButtonChange(group, field);
+        }
+    });
+}
+
 function setupEventListeners() {
     // Basic information
     document.getElementById('average-grade').addEventListener('input', handleAverageGrade);
@@ -51,10 +82,29 @@ function setupEventListeners() {
         document.getElementById('faculty').addEventListener('input', function () {
             // Faculty is just for display, no calculation needed
         });
-    }    // Socio-economic status inputs
+    }
+
+    // Socio-economic status inputs
     document.getElementById('household-members').addEventListener('input', handleSocioEconomic);
     ['grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6', 'grade7'].forEach(id => {
         document.getElementById(id).addEventListener('input', handleSocioEconomic);
+    });
+
+    // Radio button event listeners for income fields
+    const radioGroups = [
+        { group: 'mama1-radio', field: 'grade1' },
+        { group: 'mama2-radio', field: 'grade2' },
+        { group: 'mama3-radio', field: 'grade3' },
+        { group: 'tata1-radio', field: 'grade4' },
+        { group: 'tata2-radio', field: 'grade5' },
+        { group: 'tata3-radio', field: 'grade6' }
+    ];
+
+    radioGroups.forEach(({ group, field }) => {
+        const radios = document.querySelectorAll(`input[name="${group}"]`);
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => handleRadioButtonChange(group, field));
+        });
     });
 
     // Additional criteria
@@ -224,7 +274,14 @@ function handleSocioEconomic() {
     currentValues.householdMembers = parseInt(document.getElementById('household-members').value) || 0;
 
     const getValue = (id) => {
-        const val = document.getElementById(id).value;
+        const field = document.getElementById(id);
+        const val = field.value;
+
+        // If field is disabled and empty, preserve the empty string for calculation logic
+        if (field.disabled && val === '') {
+            return '';
+        }
+
         return val === '' ? '' : parseFloat(val) || 0;
     };
 
@@ -256,6 +313,44 @@ function handleFinalCategories() {
     currentValues.aj4 = document.getElementById('aj4').checked;
     currentValues.ak4 = document.getElementById('ak4').checked;
     calculateAll();
+}
+
+// Handle radio button changes for income fields
+function handleRadioButtonChange(radioGroup, fieldId) {
+    const selectedRadio = document.querySelector(`input[name="${radioGroup}"]:checked`);
+    const inputField = document.getElementById(fieldId);
+
+    if (!selectedRadio || !inputField) return;
+
+    const selectedValue = selectedRadio.value;
+
+    switch (selectedValue) {
+        case 'platne':
+            // Enable field for user input
+            inputField.disabled = false;
+            inputField.style.backgroundColor = '';
+            inputField.placeholder = inputField.getAttribute('data-original-placeholder') || inputField.placeholder;
+            break;
+
+        case '0':
+            // Lock field and set to 0
+            inputField.disabled = true;
+            inputField.value = '0';
+            inputField.style.backgroundColor = '#f8f9fa';
+            inputField.placeholder = 'Automatski postavljeno na 0';
+            break;
+
+        case 'blank':
+            // Lock field and set to empty
+            inputField.disabled = true;
+            inputField.value = '';
+            inputField.style.backgroundColor = '#f8f9fa';
+            inputField.placeholder = 'Polje zaključano - nedostaju dokumenti';
+            break;
+    }
+
+    // Trigger recalculation
+    handleSocioEconomic();
 }
 
 // --- DOKUMENTI CHECK ---
