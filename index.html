@@ -19,6 +19,18 @@
         <div class="form-container p-4">
             <form id="stipendija-form">
                 <div class="section mb-4">
+                    <h2 class="mb-3">Dokumenti (priloženi)</h2>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc-izjava">
+                        <label class="form-check-label" for="doc-izjava">Izjava o neprimanju stipendija</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc-rodni-list">
+                        <label class="form-check-label" for="doc-rodni-list">Rodni list (ukoliko mjesto rođenja nije
+                            Brčko)</label>
+                    </div>
+                </div>
+                <div class="section mb-4">
                     <h2 class="mb-4">Osnovne Informacije</h2>
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -69,57 +81,166 @@
                             <span class="result ms-2" id="grade-points">Bodovi: 0</span>
                         </div>
                     </div>
-                    <div class="grades-section mt-4">
-                        <h3 class="mb-3">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h3>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <label for="grade1" class="form-label">Mama - I:</label>
-                                <input type="number" id="grade1" class="form-control" min="0" step="0.01"
-                                    placeholder="Primanja majke">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade2" class="form-label">Mama - II:</label>
-                                <input type="number" id="grade2" class="form-control" min="0" step="0.01"
-                                    placeholder="Dodatna primanja majke">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade3" class="form-label">Mama - III:</label>
-                                <input type="number" id="grade3" class="form-control" min="0" step="0.01"
-                                    placeholder="Ostala primanja majke">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade4" class="form-label">Tata - I:</label>
-                                <input type="number" id="grade4" class="form-control" min="0" step="0.01"
-                                    placeholder="Primanja oca">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade5" class="form-label">Tata - II:</label>
-                                <input type="number" id="grade5" class="form-control" min="0" step="0.01"
-                                    placeholder="Dodatna primanja oca">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade6" class="form-label">Tata - III:</label>
-                                <input type="number" id="grade6" class="form-control" min="0" step="0.01"
-                                    placeholder="Ostala primanja oca">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
-                                <input type="number" id="grade7" class="form-control" min="0" step="0.01"
-                                    placeholder="Ostala primanja">
-                            </div>
-                        </div>
-                        <div class="calculation-results mt-3">
-                            <div class="result" id="total-average">Ukupan prosjek (R4): 0</div>
-                            <div class="result" id="ratio">Ratio (S4): 0</div>
-                            <div class="result" id="ratio-points">Bodovi za ratio (T4): 0</div>
+                </div>
+                <div class="section mb-4">
+                    <h2 class="mb-4">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h2>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="household-members" class="form-label">Broj članova domaćinstva (J4):</label>
+                            <input type="number" id="household-members" class="form-control" min="1" step="1"
+                                placeholder="Unesite broj članova">
                         </div>
                     </div>
-                    <div class="row g-3 mt-3">
-                        <div class="col-md-6">
-                            <label for="credits" class="form-label">Broj bodova/ECTS:</label>
-                            <input type="number" id="credits" class="form-control" min="1"
-                                placeholder="Unesite ukupan broj bodova">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="grade1" class="form-label">Mama - I (K4):</label>
+                            <input type="number" id="grade1" class="form-control" min="0" step="0.01"
+                                placeholder="Primanja majke">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="mama1-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="mama1-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="mama1-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <label for="grade2" class="form-label">Mama - II (L4):</label>
+                            <input type="number" id="grade2" class="form-control" min="0" step="0.01"
+                                placeholder="Dodatna primanja majke">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="mama2-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="mama2-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="mama2-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="grade3" class="form-label">Mama - III (M4):</label>
+                            <input type="number" id="grade3" class="form-control" min="0" step="0.01"
+                                placeholder="Ostala primanja majke">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="mama3-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="mama3-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="mama3-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="grade4" class="form-label">Tata - I (N4):</label>
+                            <input type="number" id="grade4" class="form-control" min="0" step="0.01"
+                                placeholder="Primanja oca">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="tata1-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="tata1-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="tata1-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="grade5" class="form-label">Tata - II (O4):</label>
+                            <input type="number" id="grade5" class="form-control" min="0" step="0.01"
+                                placeholder="Dodatna primanja oca">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="tata2-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="tata2-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="tata2-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="grade6" class="form-label">Tata - III (P4):</label>
+                            <input type="number" id="grade6" class="form-control" min="0" step="0.01"
+                                placeholder="Ostala primanja oca">
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-platne"
+                                    value="platne" checked>
+                                <label class="form-check-label" for="tata3-radio-platne">Platne liste</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-0"
+                                    value="0">
+                                <label class="form-check-label" for="tata3-radio-0">Priložen dokaz o
+                                    nezaposlenosti / razvodu / smrti</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-blank"
+                                    value="blank">
+                                <label class="form-check-label" for="tata3-radio-blank">Nedostaje platna lista i
+                                    dokaz o nezaposlenosti</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="grade7" class="form-label">Baka/Sestra/Brat (Q4):</label>
+                            <input type="number" id="grade7" class="form-control" min="0" step="0.01"
+                                placeholder="Ostala primanja">
+                        </div>
+                    </div>
+                    <div class="calculation-results mt-3">
+                        <div class="result" id="total-average">Prosjek (R4): 0</div>
+                        <div class="result" id="ratio">Prosjek / Broj članova (S4): 0</div>
+                        <div class="result" id="ratio-points">Bodovi za ekonomski status (T4): 0</div>
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label for="credits" class="form-label">Broj bodova/ECTS:</label>
+                        <input type="number" id="credits" class="form-control" min="1"
+                            placeholder="Unesite ukupan broj bodova">
                     </div>
                 </div>
                 <div class="section mb-4">
@@ -204,7 +325,7 @@
                             <label for="ah4" class="form-label">Godina studija (1-6):</label>
                             <select id="ah4" class="form-select">
                                 <option value="">Odaberite godinu</option>
-                                <option value="1">1 - Greška</option>
+                                <option value="1">1 - 0 bodova</option>
                                 <option value="2">2 - 5 bodova</option>
                                 <option value="3">3 - 10 bodova</option>
                                 <option value="4">4 - 15 bodova</option>
@@ -281,6 +402,12 @@
                         </button>
                         <input type="file" id="load-session-input" accept="application/json" style="display:none;">
                     </div>
+                </div>
+                <!-- Napomena field at the bottom of the form -->
+                <div class="section mb-4">
+                    <h2 class="mb-4">Napomena</h2>
+                    <textarea id="napomena" class="form-control" rows="2" readonly
+                        placeholder="Napomena o nedostajućim dokumentima će se automatski prikazati ovdje."></textarea>
                 </div>
             </form>
         </div>
