@@ -1135,8 +1135,9 @@ function highlightRequiredFields() {
         'name',
         'nationality',
         'phone',
-        'faculty',
         'faculty-extra',
+        'faculty',
+        'custom-faculty',
         'average-grade',
         // Socio-economic status
         'household-members',
@@ -1223,6 +1224,7 @@ function checkRequiredFields() {
         requiredFields.push({ id: 'custom-faculty', name: 'Naziv univerziteta' });
     } else {
         requiredFields.push({ id: 'faculty-combined', name: 'Fakultet' });
+        requiredFields.push({ id: 'faculty' });
     }
 
     // Check text/number inputs
@@ -1268,6 +1270,7 @@ function setupRequiredFieldListeners() {
         requiredFieldIds.push('custom-faculty');
     } else {
         requiredFieldIds.push('faculty-combined');
+        requiredFieldIds.push('faculty');
     }
 
     // Text inputs
