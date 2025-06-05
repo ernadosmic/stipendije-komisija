@@ -324,6 +324,9 @@ function handleRadioButtonChange(radioGroup, fieldId) {
 
     const selectedValue = selectedRadio.value;
 
+    // Synchronize radio buttons within the same parent group
+    synchronizeRadioGroups(radioGroup, selectedValue);
+
     switch (selectedValue) {
         case 'platne':
             // Enable field for user input
@@ -351,6 +354,67 @@ function handleRadioButtonChange(radioGroup, fieldId) {
 
     // Trigger recalculation
     handleSocioEconomic();
+}
+
+// New function to synchronize radio buttons within parent groups
+function synchronizeRadioGroups(changedGroup, selectedValue) {
+    // Define parent groups
+    const mamaGroups = ['mama1-radio', 'mama2-radio', 'mama3-radio'];
+    const tataGroups = ['tata1-radio', 'tata2-radio', 'tata3-radio'];
+    const fieldMappings = {
+        'mama1-radio': 'grade1',
+        'mama2-radio': 'grade2',
+        'mama3-radio': 'grade3',
+        'tata1-radio': 'grade4',
+        'tata2-radio': 'grade5',
+        'tata3-radio': 'grade6'
+    };
+
+    let groupsToSync = [];
+
+    // Determine which groups to synchronize
+    if (mamaGroups.includes(changedGroup)) {
+        groupsToSync = mamaGroups;
+    } else if (tataGroups.includes(changedGroup)) {
+        groupsToSync = tataGroups;
+    }
+
+    // Synchronize all groups in the same parent category
+    groupsToSync.forEach(groupName => {
+        if (groupName !== changedGroup) {
+            // Set the radio button to the same value
+            const radioToSelect = document.querySelector(`input[name="${groupName}"][value="${selectedValue}"]`);
+            if (radioToSelect) {
+                radioToSelect.checked = true;
+
+                // Apply the same field changes
+                const fieldId = fieldMappings[groupName];
+                const inputField = document.getElementById(fieldId);
+
+                if (inputField) {
+                    switch (selectedValue) {
+                        case 'platne':
+                            inputField.disabled = false;
+                            inputField.style.backgroundColor = '';
+                            inputField.placeholder = inputField.getAttribute('data-original-placeholder') || inputField.placeholder;
+                            break;
+                        case '0':
+                            inputField.disabled = true;
+                            inputField.value = '0';
+                            inputField.style.backgroundColor = '#f8f9fa';
+                            inputField.placeholder = 'Automatski postavljeno na 0';
+                            break;
+                        case 'blank':
+                            inputField.disabled = true;
+                            inputField.value = '';
+                            inputField.style.backgroundColor = '#f8f9fa';
+                            inputField.placeholder = 'Polje zaključano - nedostaju dokumenti';
+                            break;
+                    }
+                }
+            }
+        }
+    });
 }
 
 // --- DOKUMENTI CHECK ---
