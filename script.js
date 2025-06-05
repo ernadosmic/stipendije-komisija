@@ -75,13 +75,6 @@ function setupEventListeners() {
     // Basic information
     document.getElementById('average-grade').addEventListener('input', handleAverageGrade);
 
-    // Faculty field (optional, no calculation needed)
-    if (document.getElementById('faculty')) {
-        document.getElementById('faculty').addEventListener('input', function () {
-            // Faculty is just for display, no calculation needed
-        });
-    }
-
     // Socio-economic status inputs
     document.getElementById('household-members').addEventListener('input', handleSocioEconomic);
     ['grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6', 'grade7'].forEach(id => {
@@ -110,10 +103,10 @@ function setupEventListeners() {
     document.getElementById('v4').addEventListener('input', handleAdditionalCriteria);
     document.getElementById('w4').addEventListener('input', handleAdditionalCriteria);
 
-    // Categories
-    const categories = ['y4', 'z4', 'aa4', 'ab4', 'ac4', 'ad4', 'ae4', 'af4'];
-    categories.forEach(cat => {
-        document.getElementById(cat).addEventListener('change', handleCategories);
+    // Categories - Convert to radio button group
+    const categoryRadios = document.querySelectorAll('input[name="porodicne-prilike"]');
+    categoryRadios.forEach(radio => {
+        radio.addEventListener('change', handleCategoriesRadio);
     });
 
     // Rating
@@ -122,6 +115,23 @@ function setupEventListeners() {
     // Final categories
     document.getElementById('aj4').addEventListener('change', handleFinalCategories);
     document.getElementById('ak4').addEventListener('change', handleFinalCategories);
+}
+
+// New handler for category radio buttons
+function handleCategoriesRadio() {
+    // Reset all categories to false
+    const categories = ['y4', 'z4', 'aa4', 'ab4', 'ac4', 'ad4', 'ae4', 'af4'];
+    categories.forEach(cat => {
+        currentValues.categories[cat] = false;
+    });
+
+    // Set the selected category to true
+    const selectedRadio = document.querySelector('input[name="porodicne-prilike"]:checked');
+    if (selectedRadio && selectedRadio.value !== 'none') {
+        currentValues.categories[selectedRadio.value] = true;
+    }
+
+    calculateAll();
 }
 
 // I4 Function: Grade points calculation
@@ -165,6 +175,7 @@ function calculateX4(u4, v4, w4) {
 
 // AG4 Function: Category points
 function calculateAG4(categories) {
+    // Since only one category can be selected now, check in priority order
     if (categories.y4) return 50;
     if (categories.z4) return 25;
     if (categories.aa4) return 20;
@@ -180,7 +191,7 @@ function calculateAG4(categories) {
 function calculateAI4(ah4) {
     const rating = parseInt(ah4);
 
-    if (rating === 1) return "Greška";
+    if (rating === 1) return 0;
     if (rating === 2) return 5;
     if (rating === 3) return 10;
     if (rating === 4) return 15;
@@ -443,13 +454,13 @@ function calculateAll() {
 
     // Calculate AG4 (Category points)
     const ag4 = calculateAG4(currentValues.categories);
-    document.getElementById('ag4-points').textContent = `AG4 Bodovi: ${ag4}`;
+    document.getElementById('ag4-points').textContent = `Bodovi: ${ag4}`;
     document.getElementById('total-ag4').textContent = ag4.toString();
 
     // Calculate AI4 (Rating points)
     const ai4 = calculateAI4(currentValues.ah4);
     const ai4Display = ai4 === "Greška" ? ai4 : ai4.toString();
-    document.getElementById('ai4-points').textContent = `AI4 Bodovi: ${ai4Display}`;
+    document.getElementById('ai4-points').textContent = `Bodovi: ${ai4Display}`;
     document.getElementById('total-ai4').textContent = ai4Display;
 
     // Calculate AL4 (Final category points)
@@ -532,6 +543,9 @@ function exportToExcel() {
 
 // Collect form data
 function collectFormData() {
+    const selectedCategory = document.querySelector('input[name="porodicne-prilike"]:checked');
+    const categoryValue = selectedCategory ? selectedCategory.value : 'none';
+
     const data = {
         'Broj predmeta': document.getElementById('subject-number').value,
         'JMBG': document.getElementById('jmbg').value,
@@ -546,14 +560,7 @@ function collectFormData() {
         'Posebna': document.getElementById('u4').value,
         'Invalida': document.getElementById('v4').value,
         'Fakultet (dodatno)': document.getElementById('w4').value,
-        'Boračka': document.getElementById('y4').checked ? 'DA' : '',
-        'Bez oba roditelja': document.getElementById('z4').checked ? 'DA' : '',
-        'Vojnih invalida': document.getElementById('aa4').checked ? 'DA' : '',
-        'Poginulih za oslobođenje': document.getElementById('ab4').checked ? 'DA' : '',
-        'Mučenika': document.getElementById('ac4').checked ? 'DA' : '',
-        'Ratnih vojnih invalida': document.getElementById('ad4').checked ? 'DA' : '',
-        'Časnih žena i domobrana': document.getElementById('ae4').checked ? 'DA' : '',
-        'Studenata koji polažu': document.getElementById('af4').checked ? 'DA' : '',
+        'Porodične prilike': getCategoryLabel(categoryValue),
         'Godina studija': document.getElementById('ah4').value,
         'BUDŽET': document.getElementById('aj4').checked ? 'DA' : '',
         'SAMOFINANSIRANJE': document.getElementById('ak4').checked ? 'DA' : '',
@@ -568,6 +575,22 @@ function collectFormData() {
     return data;
 }
 
+// Helper function to get category label for export
+function getCategoryLabel(categoryValue) {
+    const labels = {
+        'y4': 'Bez oba roditelja',
+        'z4': 'Bez jednog roditelja',
+        'aa4': 'Ratnih vojnih invalida od 1. do 10.kategorije',
+        'ab4': 'Invalidi rada min 50%',
+        'ac4': 'Civilne žrtve i logoraši',
+        'ad4': 'Rastavljenih ili razvedeni',
+        'ae4': 'Student koji je u bračnoj zajednici',
+        'af4': 'Student koji je roditelj',
+        'none': ''
+    };
+    return labels[categoryValue] || '';
+}
+
 function resetForm() {
     const ids = [
         'subject-number', 'jmbg', 'surname', 'father-name', 'name', 'nationality', 'phone', 'faculty', 'average-grade',
@@ -580,14 +603,21 @@ function resetForm() {
             else el.value = '';
         }
     });
+
+    // Reset category radio buttons to "none"
+    const noneRadio = document.getElementById('none');
+    if (noneRadio) noneRadio.checked = true;
+
     // Reset selects
     const ah4 = document.getElementById('ah4');
     if (ah4) ah4.value = '';
-    // Reset checkboxes
-    ['y4', 'z4', 'aa4', 'ab4', 'ac4', 'ad4', 'ae4', 'af4', 'aj4', 'ak4'].forEach(id => {
+
+    // Reset final category checkboxes
+    ['aj4', 'ak4'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.checked = false;
     });
+
     calculateAll();
 }
 

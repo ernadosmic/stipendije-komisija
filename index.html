@@ -263,54 +263,75 @@
                     <div class="row g-2">
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="y4">
-                                <label class="form-check-label" for="y4">Boračka (50 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="none"
+                                    value="none" checked>
+                                <label class="form-check-label" for="none">Bez kategorije</label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="z4">
-                                <label class="form-check-label" for="z4">Bez oba roditelja (25 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="y4"
+                                    value="y4">
+                                <label class="form-check-label" for="y4">Bez oba roditelja</label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="aa4">
-                                <label class="form-check-label" for="aa4">Vojnih invalida (20 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="z4"
+                                    value="z4">
+                                <label class="form-check-label" for="z4">Bez jednog roditelja</label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ab4">
-                                <label class="form-check-label" for="ab4">Poginulih za oslobođenje (15 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="aa4"
+                                    value="aa4">
+                                <label class="form-check-label" for="aa4">Ratnih vojnih invalida od 1. do
+                                    10.kategorije</label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ac4">
-                                <label class="form-check-label" for="ac4">Mučenika (10 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="ab4"
+                                    value="ab4">
+                                <label class="form-check-label" for="ab4">Invalidi rada min 50%
+
+                                </label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ad4">
-                                <label class="form-check-label" for="ad4">Ratnih vojnih invalida (5 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="ac4"
+                                    value="ac4">
+                                <label class="form-check-label" for="ac4">Civilne žrtve i logoraši
+                                </label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ae4">
-                                <label class="form-check-label" for="ae4">Časnih žena i domobrana (10 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="ad4"
+                                    value="ad4">
+                                <label class="form-check-label" for="ad4">Rastavljenih ili razvedeni</label>
                             </div>
                         </div>
                         <div class="col-md-3 col-6">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="af4">
-                                <label class="form-check-label" for="af4">Studenata koji polažu (20 bodova)</label>
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="ae4"
+                                    value="ae4">
+                                <label class="form-check-label" for="ae4">Student koji je u bračnoj zajednici
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="porodicne-prilike" id="af4"
+                                    value="af4">
+                                <label class="form-check-label" for="af4">Student koji je roditelj
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div class="result mt-3" id="ag4-points">AG4 Bodovi: 0</div>
+                    <div class="result mt-3" id="ag4-points">Bodovi: 0</div>
                 </div>
                 <div class="section mb-4">
                     <h2 class="mb-4">Dostignuto obrazovanje (godina studija)</h2>
@@ -335,19 +356,31 @@
                 <div class="section mb-4">
                     <h2 class="mb-4">Završne Kategorije</h2>
                     <div class="row g-2">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="aj4">
-                                <label class="form-check-label" for="aj4">BUDŽET (studijski/finansijski/stručni) (30
-                                    bodova)
+                                <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="none-zavrsne"
+                                    value="none" checked>
+                                <label class="form-check-label" for="none-zavrsne">Bez kategorije (Privatni
+                                    fakultet)</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="aj4"
+                                    value="aj4">
+                                <label class="form-check-label" for="aj4">BUDŽET (studij finansira iz budžetskih
+                                    sredstava države, entiteta ili kantona)
+
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ak4">
-                                <label class="form-check-label" for="ak4">SAMOFINANSIRANJE (studij na vlastiti trošak)
-                                    (25 bodova)
+                                <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="ak4"
+                                    value="ak4">
+                                <label class="form-check-label" for="ak4">SUFINANSIRA (sufinansira ili samofinansira
+                                    studij na javnoj visokoškolskoj ustanovi)
+
                                 </label>
                             </div>
                         </div>
