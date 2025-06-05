@@ -32,557 +32,564 @@
         <div class="form-container p-4">
             <form id="stipendija-form">
                 <div class="section mb-4">
-                    <h2 class="mb-3">
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Dokumenti (priloženi)</h2>
-                            <div class="row g-2">
-                                <div class="col-md-6">
-                                    <label class="form-label">Rođen u Brčkom?</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rodjen-brcko"
-                                            id="rodjen-brcko-da" value="da" checked>
-                                        <label class="form-check-label" for="rodjen-brcko-da">
-                                            Da
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rodjen-brcko"
-                                            id="rodjen-brcko-ne" value="ne">
-                                        <label class="form-check-label" for="rodjen-brcko-ne">
-                                            Ne
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" id="rodni-list-container" style="display: none;">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-rodni-list">
-                                        <label class="form-check-label" for="doc-rodni-list">
-                                            Rodni list za studenta koji nije upisan u matičnu knjigu rođenih u Distriktu
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-potvrda-upis">
-                                        <label class="form-check-label" for="doc-potvrda-upis">
-                                            Original potvrdu ili uvjerenje o upisu godine studija
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-potvrda-ispiti">
-                                        <label class="form-check-label" for="doc-potvrda-ispiti">
-                                            Original potvrdu ili uvjerenje o položenim ispitima
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-izjava-domacinstvo">
-                                        <label class="form-check-label" for="doc-izjava-domacinstvo">
-                                            Izjava o zajedničkom domaćinstvu
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-izjava">
-                                        <label class="form-check-label" for="doc-izjava">
-                                            Izjava o neprimanju stipendija
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="doc-potvrda-finansiranje">
-                                        <label class="form-check-label" for="doc-potvrda-finansiranje">
-                                            Original potvrdu ili uvjerenje da se studij finansira iz budžetskih
-                                            sredstava ili
-                                            sufinansira na javnoj viosokoškolskoj ustanovi
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Osnovne Informacije</h2>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="subject-number" class="form-label">Broj predmeta:</label>
-                                    <input type="text" id="subject-number" class="form-control"
-                                        placeholder="Unesite broj predmeta">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="jmbg" class="form-label">JMBG:</label>
-                                    <input type="text" id="jmbg" class="form-control" placeholder="Unesite JMBG">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="surname" class="form-label">Prezime:</label>
-                                    <input type="text" id="surname" class="form-control" placeholder="Unesite prezime">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="father-name" class="form-label">Ime oca:</label>
-                                    <input type="text" id="father-name" class="form-control"
-                                        placeholder="Unesite ime oca">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">Ime:</label>
-                                    <input type="text" id="name" class="form-control" placeholder="Unesite ime">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nationality" class="form-label">Nacionalnost:</label>
-                                    <select id="nationality" class="form-select">
-                                        <option value="">Odaberite...</option>
-                                        <option value="Bošnjak">Bošnjak</option>
-                                        <option value="Hrvat">Hrvat</option>
-                                        <option value="Srbin">Srbin</option>
-                                        <option value="Ostali">Ostali</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Broj telefona ili email:</label>
-                                    <input type="text" id="phone" class="form-control"
-                                        placeholder="Unesite broj telefona ili email">
-                                </div>
-                                <div class="col-12">
-                                    <label for="faculty" class="form-label">Naziv fakulteta:</label>
-                                    <select id="faculty" class="form-select mb-2">
-                                        <option value="">Odaberite univerzitet...</option>
-                                        <option value="Univerzitet u Sarajevu">Univerzitet u Sarajevu</option>
-                                        <option value="Univerzitet u Tuzli">Univerzitet u Tuzli</option>
-                                        <option value="Univerzitet u Beogradu">Univerzitet u Beogradu</option>
-                                        <option value="Univerzitet u Istočnom Sarajevu">Univerzitet u Istočnom Sarajevu
-                                        </option>
-                                        <option value="Univerzitet u Banjoj Luci">Univerzitet u Banjoj Luci</option>
-                                        <option value="Univerzitet u Novom Sadu">Univerzitet u Novom Sadu</option>
-                                    </select>
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="custom-faculty-toggle">
-                                        <label class="form-check-label" for="custom-faculty-toggle">Unesi vlastiti
-                                            naziv</label>
-                                    </div>
-                                    <input type="text" id="custom-faculty" class="form-control mb-2"
-                                        placeholder="Unesite naziv univerziteta" style="display:none;">
-                                    <input type="text" id="faculty-extra" class="form-control mb-2"
-                                        placeholder="Unesite fakultet">
-                                    <input type="text" id="faculty-combined" class="form-control"
-                                        placeholder="Kombinovani naziv fakulteta" disabled>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="average-grade" class="form-label">Prosjek ocjena:</label>
-                                    <input type="number" id="average-grade" class="form-control" step="0.01" min="1"
-                                        max="10" placeholder="Unesite prosjek ocjena">
-                                </div>
-                                <div class="col-md-6 d-flex align-items-end">
-                                    <span class="result ms-2" id="grade-points">Bodovi: 0</span>
-                                </div>
-                            </div>
-                            <!-- Add hint explanation for grades -->
-                            <div class="alert alert-info mt-3" role="alert">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <small><strong>Objašnjenje:</strong> Za prvi ciklus studija uzima se ukupni ostvareni
-                                    prosječni
-                                    uspjeh (Član 6.). Za drugi ciklus uzima se ostvareni prosječni uspjeh tokom prvog
-                                    ciklusa
-                                    studija (Član
-                                    12.).</small>
-                            </div>
-                        </div>
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h2>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="household-members" class="form-label">Broj članova domaćinstva:</label>
-                                    <input type="number" id="household-members" class="form-control" min="1" step="1"
-                                        placeholder="Unesite broj članova">
-                                </div>
-                            </div>
-                            <hr class="hr hr-blurry" />
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="grade1" class="form-label">Mama - I:</label>
-                                    <input type="number" id="grade1" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja majke">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="mama1-radio"
-                                            id="mama1-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="mama1-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama1-radio"
-                                            id="mama1-radio-0" value="0">
-                                        <label class="form-check-label" for="mama1-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama1-radio"
-                                            id="mama1-radio-blank" value="blank">
-                                        <label class="form-check-label" for="mama1-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="grade2" class="form-label">Mama - II:</label>
-                                    <input type="number" id="grade2" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja majke">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="mama2-radio"
-                                            id="mama2-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="mama2-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama2-radio"
-                                            id="mama2-radio-0" value="0">
-                                        <label class="form-check-label" for="mama2-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama2-radio"
-                                            id="mama2-radio-blank" value="blank">
-                                        <label class="form-check-label" for="mama2-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="grade3" class="form-label">Mama - III:</label>
-                                    <input type="number" id="grade3" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja majke">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="mama3-radio"
-                                            id="mama3-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="mama3-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama3-radio"
-                                            id="mama3-radio-0" value="0">
-                                        <label class="form-check-label" for="mama3-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="mama3-radio"
-                                            id="mama3-radio-blank" value="blank">
-                                        <label class="form-check-label" for="mama3-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <hr class="hr hr-blurry" />
-                                <div class="col-md-4">
-                                    <label for="grade4" class="form-label">Tata - I:</label>
-                                    <input type="number" id="grade4" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja oca">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="tata1-radio"
-                                            id="tata1-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="tata1-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata1-radio"
-                                            id="tata1-radio-0" value="0">
-                                        <label class="form-check-label" for="tata1-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata1-radio"
-                                            id="tata1-radio-blank" value="blank">
-                                        <label class="form-check-label" for="tata1-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="grade5" class="form-label">Tata - II:</label>
-                                    <input type="number" id="grade5" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja oca">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="tata2-radio"
-                                            id="tata2-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="tata2-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata2-radio"
-                                            id="tata2-radio-0" value="0">
-                                        <label class="form-check-label" for="tata2-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata2-radio"
-                                            id="tata2-radio-blank" value="blank">
-                                        <label class="form-check-label" for="tata2-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="grade6" class="form-label">Tata - III:</label>
-                                    <input type="number" id="grade6" class="form-control" min="0" step="0.01"
-                                        placeholder="Primanja oca">
-                                    <div class="form-check mt-1">
-                                        <input class="form-check-input" type="radio" name="tata3-radio"
-                                            id="tata3-radio-platne" value="platne" checked>
-                                        <label class="form-check-label" for="tata3-radio-platne">Platne liste /
-                                            Penzija</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata3-radio"
-                                            id="tata3-radio-0" value="0">
-                                        <label class="form-check-label" for="tata3-radio-0">Priložen dokaz o
-                                            nezaposlenosti / razvodu / smrti</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tata3-radio"
-                                            id="tata3-radio-blank" value="blank">
-                                        <label class="form-check-label" for="tata3-radio-blank">Nedostaje platna lista
-                                            i/ili
-                                            dokaz o nezaposlenosti</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
 
-                                    <input type="number" id="grade7" class="form-control" min="0" step="0.01"
-                                        placeholder="Ostala primanja">
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Dokumenti (priloženi)</h2>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Student je rođen u Brčkom?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rodjen-brcko"
+                                        id="rodjen-brcko-da" value="da" checked>
+                                    <label class="form-check-label" for="rodjen-brcko-da">
+                                        Da
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rodjen-brcko"
+                                        id="rodjen-brcko-ne" value="ne">
+                                    <label class="form-check-label" for="rodjen-brcko-ne">
+                                        Ne
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="rodni-list-container" style="display: none;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-rodni-list">
+                                    <label class="form-check-label" for="doc-rodni-list">
+                                        Rodni list za studenta koji nije upisan u matičnu knjigu rođenih u Distriktu
+                                    </label>
+
                                 </div>
                                 <!-- Add hint explanation -->
                                 <div class="alert alert-info mb-2" role="alert">
                                     <i class="bi bi-info-circle me-2"></i>
-                                    <small><strong>Napomena:</strong> Zadnje tri platne liste. Za penzije potreban je
-                                        posljednji ček penzije čiji se iznos upiše tri puta.</small>
+                                    <small><strong>Napomena:</strong> Odabrali ste da student nije naveo da je rođen u
+                                        Brčkom. Označite da li je dostavio <strong>rodni list.</strong></small>
                                 </div>
                             </div>
-                            <div class="calculation-results mt-3">
-                                <div class="result" id="total-average">Prosjek: 0</div>
-                                <div class="result" id="ratio">Prosjek / Broj članova: 0</div>
-                                <div class="result" id="ratio-points">Bodovi za ekonomski status (T4): 0</div>
-                            </div>
-                        </div>
-
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Broj ostale djece koja se školuju u porodici</h2>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="u4" class="form-label">Osnovna:</label>
-                                    <input type="number" id="u4" class="form-control" step="1"
-                                        placeholder="Unesite vrijednost za osnovnu školu">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="v4" class="form-label">Srednja:</label>
-                                    <input type="number" id="v4" class="form-control" step="1"
-                                        placeholder="Unesite vrijednost za srednju školu">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="w4" class="form-label">Fakultet:</label>
-                                    <input type="number" id="w4" class="form-control" step="1"
-                                        placeholder="Unesite vrijednost za fakultet">
-                                </div>
-                            </div>
-                            <div class="result mt-3" id="x4-points">Bodovi: 0</div>
-                        </div>
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Porodične Prilike (upisuje se 1)</h2>
-
-                            <div class="row g-2">
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="none"
-                                            value="none" checked>
-                                        <label class="form-check-label" for="none">Bez kategorije</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="y4"
-                                            value="y4">
-                                        <label class="form-check-label" for="y4">Bez oba roditelja</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="z4"
-                                            value="z4">
-                                        <label class="form-check-label" for="z4">Bez jednog roditelja</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="aa4"
-                                            value="aa4">
-                                        <label class="form-check-label" for="aa4">Ratnih vojnih invalida od 1. do
-                                            10.kategorije</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="ab4"
-                                            value="ab4">
-                                        <label class="form-check-label" for="ab4">Invalidi rada min 50%
-
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="ac4"
-                                            value="ac4">
-                                        <label class="form-check-label" for="ac4">Civilne žrtve i logoraši
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="ad4"
-                                            value="ad4">
-                                        <label class="form-check-label" for="ad4">Rastavljenih ili razvedeni</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="ae4"
-                                            value="ae4">
-                                        <label class="form-check-label" for="ae4">Student koji je u bračnoj zajednici
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="porodicne-prilike" id="af4"
-                                            value="af4">
-                                        <label class="form-check-label" for="af4">Student koji je roditelj
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="result mt-3" id="ag4-points">Bodovi: 0</div>
                             <hr class="hr hr-blurry" />
-                            <!-- Add hint explanation -->
-                            <div class="alert alert-info mb-3" role="alert">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <small><strong>Napomena:</strong> Jedan se odabira. Odabire se osnov povoljniji po
-                                    prijavljenom
-                                    studentu.</small>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-potvrda-upis">
+                                    <label class="form-check-label" for="doc-potvrda-upis">
+                                        Original potvrdu ili uvjerenje o upisu godine studija
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-potvrda-ispiti">
+                                    <label class="form-check-label" for="doc-potvrda-ispiti">
+                                        Original potvrdu ili uvjerenje o položenim ispitima
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-izjava-domacinstvo">
+                                    <label class="form-check-label" for="doc-izjava-domacinstvo">
+                                        Izjava o zajedničkom domaćinstvu
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-izjava">
+                                    <label class="form-check-label" for="doc-izjava">
+                                        Izjava o neprimanju stipendija
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="doc-potvrda-finansiranje">
+                                    <label class="form-check-label" for="doc-potvrda-finansiranje">
+                                        Original potvrdu ili uvjerenje da se studij finansira iz budžetskih
+                                        sredstava ili
+                                        sufinansira na javnoj viosokoškolskoj ustanovi
+                                    </label>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Osnovne Informacije</h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="subject-number" class="form-label">Broj predmeta:</label>
+                                <input type="text" id="subject-number" class="form-control"
+                                    placeholder="Unesite broj predmeta">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="jmbg" class="form-label">JMBG:</label>
+                                <input type="text" id="jmbg" class="form-control" placeholder="Unesite JMBG">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="surname" class="form-label">Prezime:</label>
+                                <input type="text" id="surname" class="form-control" placeholder="Unesite prezime">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="father-name" class="form-label">Ime oca:</label>
+                                <input type="text" id="father-name" class="form-control" placeholder="Unesite ime oca">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Ime:</label>
+                                <input type="text" id="name" class="form-control" placeholder="Unesite ime">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="nationality" class="form-label">Nacionalnost:</label>
+                                <select id="nationality" class="form-select">
+                                    <option value="">Odaberite...</option>
+                                    <option value="Bošnjak">Bošnjak</option>
+                                    <option value="Hrvat">Hrvat</option>
+                                    <option value="Srbin">Srbin</option>
+                                    <option value="Ostali">Ostali</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Broj telefona ili email:</label>
+                                <input type="text" id="phone" class="form-control"
+                                    placeholder="Unesite broj telefona ili email">
+                            </div>
+                            <div class="col-12">
+                                <label for="faculty" class="form-label">Naziv fakulteta:</label>
+                                <select id="faculty" class="form-select mb-2">
+                                    <option value="">Odaberite univerzitet...</option>
+                                    <option value="Univerzitet u Sarajevu">Univerzitet u Sarajevu</option>
+                                    <option value="Univerzitet u Tuzli">Univerzitet u Tuzli</option>
+                                    <option value="Univerzitet u Beogradu">Univerzitet u Beogradu</option>
+                                    <option value="Univerzitet u Istočnom Sarajevu">Univerzitet u Istočnom Sarajevu
+                                    </option>
+                                    <option value="Univerzitet u Banjoj Luci">Univerzitet u Banjoj Luci</option>
+                                    <option value="Univerzitet u Novom Sadu">Univerzitet u Novom Sadu</option>
+                                </select>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="custom-faculty-toggle">
+                                    <label class="form-check-label" for="custom-faculty-toggle">Unesi vlastiti
+                                        naziv</label>
+                                </div>
+                                <input type="text" id="custom-faculty" class="form-control mb-2"
+                                    placeholder="Unesite naziv univerziteta" style="display:none;">
+                                <input type="text" id="faculty-extra" class="form-control mb-2"
+                                    placeholder="Unesite fakultet">
+                                <input type="text" id="faculty-combined" class="form-control"
+                                    placeholder="Kombinovani naziv fakulteta" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="average-grade" class="form-label">Prosjek ocjena:</label>
+                                <input type="number" id="average-grade" class="form-control" step="0.01" min="1"
+                                    max="10" placeholder="Unesite prosjek ocjena">
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end">
+                                <span class="result ms-2" id="grade-points">Bodovi: 0</span>
+                            </div>
+                        </div>
+                        <!-- Add hint explanation for grades -->
+                        <div class="alert alert-info mt-3" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <small><strong>Objašnjenje:</strong> Za prvi ciklus studija uzima se ukupni ostvareni
+                                prosječni
+                                uspjeh (Član 6.). Za drugi ciklus uzima se ostvareni prosječni uspjeh tokom prvog
+                                ciklusa
+                                studija (Član
+                                12.).</small>
+                        </div>
+                    </div>
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h2>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="household-members" class="form-label">Broj članova domaćinstva:</label>
+                                <input type="number" id="household-members" class="form-control" min="1" step="1"
+                                    placeholder="Unesite broj članova">
+                            </div>
+                        </div>
+                        <hr class="hr hr-blurry" />
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="grade1" class="form-label">Mama - I:</label>
+                                <input type="number" id="grade1" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja majke">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="mama1-radio"
+                                        id="mama1-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="mama1-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="mama1-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama1-radio"
+                                        id="mama1-radio-blank" value="blank">
+                                    <label class="form-check-label" for="mama1-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade2" class="form-label">Mama - II:</label>
+                                <input type="number" id="grade2" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja majke">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="mama2-radio"
+                                        id="mama2-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="mama2-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="mama2-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama2-radio"
+                                        id="mama2-radio-blank" value="blank">
+                                    <label class="form-check-label" for="mama2-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade3" class="form-label">Mama - III:</label>
+                                <input type="number" id="grade3" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja majke">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="mama3-radio"
+                                        id="mama3-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="mama3-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="mama3-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="mama3-radio"
+                                        id="mama3-radio-blank" value="blank">
+                                    <label class="form-check-label" for="mama3-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <hr class="hr hr-blurry" />
+                            <div class="col-md-4">
+                                <label for="grade4" class="form-label">Tata - I:</label>
+                                <input type="number" id="grade4" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja oca">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="tata1-radio"
+                                        id="tata1-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="tata1-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="tata1-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata1-radio"
+                                        id="tata1-radio-blank" value="blank">
+                                    <label class="form-check-label" for="tata1-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade5" class="form-label">Tata - II:</label>
+                                <input type="number" id="grade5" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja oca">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="tata2-radio"
+                                        id="tata2-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="tata2-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="tata2-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata2-radio"
+                                        id="tata2-radio-blank" value="blank">
+                                    <label class="form-check-label" for="tata2-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade6" class="form-label">Tata - III:</label>
+                                <input type="number" id="grade6" class="form-control" min="0" step="0.01"
+                                    placeholder="Primanja oca">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="radio" name="tata3-radio"
+                                        id="tata3-radio-platne" value="platne" checked>
+                                    <label class="form-check-label" for="tata3-radio-platne">Platne liste /
+                                        Penzija</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-0"
+                                        value="0">
+                                    <label class="form-check-label" for="tata3-radio-0">Priložen dokaz o
+                                        nezaposlenosti / razvodu / smrti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tata3-radio"
+                                        id="tata3-radio-blank" value="blank">
+                                    <label class="form-check-label" for="tata3-radio-blank">Nedostaje platna lista
+                                        i/ili
+                                        dokaz o nezaposlenosti</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
+
+                                <input type="number" id="grade7" class="form-control" min="0" step="0.01"
+                                    placeholder="Ostala primanja">
+                            </div>
+                            <!-- Add hint explanation -->
+                            <div class="alert alert-info mb-2" role="alert">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <small><strong>Napomena:</strong> Zadnje tri platne liste. Za penzije potreban je
+                                    posljednji ček penzije čiji se iznos upiše tri puta.</small>
+                            </div>
+                        </div>
+                        <div class="calculation-results mt-3">
+                            <div class="result" id="total-average">Prosjek: 0</div>
+                            <div class="result" id="ratio">Prosjek / Broj članova: 0</div>
+                            <div class="result" id="ratio-points">Bodovi za ekonomski status (T4): 0</div>
+                        </div>
+                    </div>
+
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Broj ostale djece koja se školuju u porodici</h2>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="u4" class="form-label">Osnovna:</label>
+                                <input type="number" id="u4" class="form-control" step="1"
+                                    placeholder="Unesite vrijednost za osnovnu školu">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="v4" class="form-label">Srednja:</label>
+                                <input type="number" id="v4" class="form-control" step="1"
+                                    placeholder="Unesite vrijednost za srednju školu">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="w4" class="form-label">Fakultet:</label>
+                                <input type="number" id="w4" class="form-control" step="1"
+                                    placeholder="Unesite vrijednost za fakultet">
+                            </div>
+                        </div>
+                        <div class="result mt-3" id="x4-points">Bodovi: 0</div>
+                    </div>
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Porodične Prilike (upisuje se 1)</h2>
+
+                        <div class="row g-2">
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="none"
+                                        value="none" checked>
+                                    <label class="form-check-label" for="none">Bez kategorije</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="y4"
+                                        value="y4">
+                                    <label class="form-check-label" for="y4">Bez oba roditelja</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="z4"
+                                        value="z4">
+                                    <label class="form-check-label" for="z4">Bez jednog roditelja</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="aa4"
+                                        value="aa4">
+                                    <label class="form-check-label" for="aa4">Ratnih vojnih invalida od 1. do
+                                        10.kategorije</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="ab4"
+                                        value="ab4">
+                                    <label class="form-check-label" for="ab4">Invalidi rada min 50%
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="ac4"
+                                        value="ac4">
+                                    <label class="form-check-label" for="ac4">Civilne žrtve i logoraši
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="ad4"
+                                        value="ad4">
+                                    <label class="form-check-label" for="ad4">Rastavljenih ili razvedeni</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="ae4"
+                                        value="ae4">
+                                    <label class="form-check-label" for="ae4">Student koji je u bračnoj zajednici
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porodicne-prilike" id="af4"
+                                        value="af4">
+                                    <label class="form-check-label" for="af4">Student koji je roditelj
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result mt-3" id="ag4-points">Bodovi: 0</div>
+                        <hr class="hr hr-blurry" />
+                        <!-- Add hint explanation -->
+                        <div class="alert alert-info mb-3" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <small><strong>Napomena:</strong> Jedan se odabira. Odabire se osnov povoljniji po
+                                prijavljenom
+                                studentu.</small>
+                        </div>
+                    </div>
 
 
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Dostignuto obrazovanje (godina studija)</h2>
-                            <div class="row g-3 align-items-end">
-                                <div class="col-md-6">
-                                    <label for="ah4" class="form-label">Godina studija (1-6):</label>
-                                    <select id="ah4" class="form-select">
-                                        <option value="">Odaberite godinu</option>
-                                        <option value="1">1 - 0 bodova</option>
-                                        <option value="2">2 - 5 bodova</option>
-                                        <option value="3">3 - 10 bodova</option>
-                                        <option value="4">4 - 15 bodova</option>
-                                        <option value="5">5 - 20 bodova</option>
-                                        <option value="6">6 - 25 bodova</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <span class="result ms-2" id="ai4-points">AI4 Bodovi: 0</span>
-                                </div>
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Dostignuto obrazovanje (godina studija)</h2>
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-6">
+                                <label for="ah4" class="form-label">Godina studija (1-6):</label>
+                                <select id="ah4" class="form-select">
+                                    <option value="">Odaberite godinu</option>
+                                    <option value="1">1 - 0 bodova</option>
+                                    <option value="2">2 - 5 bodova</option>
+                                    <option value="3">3 - 10 bodova</option>
+                                    <option value="4">4 - 15 bodova</option>
+                                    <option value="5">5 - 20 bodova</option>
+                                    <option value="6">6 - 25 bodova</option>
+                                </select>
                             </div>
-                            <!-- Add hint explanation -->
-                            <div class="alert alert-info mt-3" role="alert">
-                                <i class="bi bi-info-circle me-2"></i>
-                                <small><strong>Objašnjenje:</strong> Ukoliko se radi o prvom ciklusu studija, ne upisuje
-                                    se 1. U
-                                    drugom ciklusu upisuje se 1.</small>
+                            <div class="col-md-6">
+                                <span class="result ms-2" id="ai4-points">AI4 Bodovi: 0</span>
                             </div>
                         </div>
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Model finansiranja</h2>
-                            <div class="row g-2">
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="zavrsne-kategorije"
-                                            id="none-zavrsne" value="none" checked>
-                                        <label class="form-check-label" for="none-zavrsne">Bez kategorije (Privatni
-                                            fakultet)</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="aj4"
-                                            value="aj4">
-                                        <label class="form-check-label" for="aj4">BUDŽET (studij finansira iz budžetskih
-                                            sredstava države, entiteta ili kantona)
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="ak4"
-                                            value="ak4">
-                                        <label class="form-check-label" for="ak4">SUFINANSIRA (sufinansira ili
-                                            samofinansira
-                                            studij na javnoj visokoškolskoj ustanovi)
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="result mt-3" id="al4-points">AL4 Bodovi: 0</div>
+                        <!-- Add hint explanation -->
+                        <div class="alert alert-info mt-3" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <small><strong>Objašnjenje:</strong> Ukoliko se radi o prvom ciklusu studija, ne upisuje
+                                se 1. U
+                                drugom ciklusu upisuje se 1.</small>
                         </div>
-                        <div class="total-section p-4 rounded-4 bg-light">
-                            <h2 class="mb-4">Ukupan Rezultat</h2>
-                            <div class="total-breakdown mb-3">
-                                <div class="breakdown-item">
-                                    <span>Bodovi za Ocjene:</span>
-                                    <span id="total-i4">0</span>
-                                </div>
-                                <div class="breakdown-item">
-                                    <span>Bodovi za ekonomski status:</span>
-                                    <span id="total-t4">0</span>
-                                </div>
-                                <div class="breakdown-item">
-                                    <span>Dodatni Kriteriji:</span>
-                                    <span id="total-x4">0</span>
-                                </div>
-                                <div class="breakdown-item">
-                                    <span>Bodovi za Porodične Prilike:</span>
-                                    <span id="total-ag4">0</span>
-                                </div>
-                                <div class="breakdown-item">
-                                    <span>Bodovi za Dostignuto obrazovanje:</span>
-                                    <span id="total-ai4">0</span>
-                                </div>
-                                <div class="breakdown-item">
-                                    <span>Bodovi finansiranja:</span>
-                                    <span id="total-al4">0</span>
+                    </div>
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Model finansiranja</h2>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="zavrsne-kategorije"
+                                        id="none-zavrsne" value="none" checked>
+                                    <label class="form-check-label" for="none-zavrsne">Bez kategorije (Privatni
+                                        fakultet)</label>
                                 </div>
                             </div>
-                            <div class="final-total bg-white shadow-sm rounded-3 p-3 mb-3">
-                                <strong>Ukupno Bodova: <span id="final-total">0</span></strong>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="aj4"
+                                        value="aj4">
+                                    <label class="form-check-label" for="aj4">BUDŽET (studij finansira iz budžetskih
+                                        sredstava države, entiteta ili kantona)
+                                    </label>
+                                </div>
                             </div>
-                            <!-- Add the generate table row button -->
-                            <div class="text-center mt-3">
-                                <button type="button" id="generate-table-row" class="btn btn-primary">
-                                    Generiraj red tabele
-                                </button>
-                            </div>
-                            <div id="table-row-output" class="mt-3" style="display: none;">
-                                <label class="form-label">Kopiraj red tabele:</label>
-                                <textarea id="table-row-text" class="form-control" rows="3" readonly></textarea>
-                                <button type="button" id="copy-table-row" class="btn btn-sm btn-outline-secondary mt-2">
-                                    Kopiraj u clipboard
-                                </button>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="zavrsne-kategorije" id="ak4"
+                                        value="ak4">
+                                    <label class="form-check-label" for="ak4">SUFINANSIRA (sufinansira ili
+                                        samofinansira
+                                        studij na javnoj visokoškolskoj ustanovi)
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <!-- Napomena field at the bottom of the form -->
-                        <div class="section mb-4">
-                            <h2 class="mb-4">Napomena</h2>
-                            <textarea id="napomena" class="form-control" rows="2"
-                                placeholder="Napomena o nedostajućim dokumentima će se automatski prikazati ovdje."></textarea>
+                        <div class="result mt-3" id="al4-points">AL4 Bodovi: 0</div>
+                    </div>
+                    <div class="total-section p-4 rounded-4 bg-light">
+                        <h2 class="mb-4">Ukupan Rezultat</h2>
+                        <div class="total-breakdown mb-3">
+                            <div class="breakdown-item">
+                                <span>Bodovi za Ocjene:</span>
+                                <span id="total-i4">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bodovi za ekonomski status:</span>
+                                <span id="total-t4">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Dodatni Kriteriji:</span>
+                                <span id="total-x4">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bodovi za Porodične Prilike:</span>
+                                <span id="total-ag4">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bodovi za Dostignuto obrazovanje:</span>
+                                <span id="total-ai4">0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Bodovi finansiranja:</span>
+                                <span id="total-al4">0</span>
+                            </div>
                         </div>
+                        <div class="final-total bg-white shadow-sm rounded-3 p-3 mb-3">
+                            <strong>Ukupno Bodova: <span id="final-total">0</span></strong>
+                        </div>
+                        <!-- Add the generate table row button -->
+                        <div class="text-center mt-3">
+                            <button type="button" id="generate-table-row" class="btn btn-primary">
+                                Generiraj red tabele
+                            </button>
+                        </div>
+                        <div id="table-row-output" class="mt-3" style="display: none;">
+                            <label class="form-label">Kopiraj red tabele:</label>
+                            <textarea id="table-row-text" class="form-control" rows="3" readonly></textarea>
+                            <button type="button" id="copy-table-row" class="btn btn-sm btn-outline-secondary mt-2">
+                                Kopiraj u clipboard
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Napomena field at the bottom of the form -->
+                    <div class="section mb-4">
+                        <h2 class="mb-4">Napomena</h2>
+                        <textarea id="napomena" class="form-control" rows="2"
+                            placeholder="Napomena o nedostajućim dokumentima će se automatski prikazati ovdje."></textarea>
+
             </form>
         </div>
     </div>

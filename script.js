@@ -1194,8 +1194,82 @@ function clearRequiredFieldHighlighting() {
     });
 }
 
-// Add event listeners to clear highlighting when fields are filled
+// Update checkRequiredFields function
+function checkRequiredFields() {
+    const customToggle = document.getElementById('custom-faculty-toggle');
+    const requiredFields = [
+        // Basic information
+        'subject-number',
+        'jmbg',
+        'surname',
+        'father-name',
+        'name',
+        'nationality',
+        'phone',
+        'average-grade',
+        // Socio-economic status
+        'household-members',
+        'grade1', 'grade2', 'grade3',
+        'grade4', 'grade5', 'grade6',
+        'grade7',
+        // Additional criteria (u4, v4, w4) - these are required too
+        'u4', 'v4', 'w4',
+        // Year of study
+        'ah4'
+    ];
+
+    // Add faculty field conditionally
+    if (customToggle.checked) {
+        requiredFields.push({ id: 'custom-faculty', name: 'Naziv univerziteta' });
+    } else {
+        requiredFields.push({ id: 'faculty-combined', name: 'Fakultet' });
+    }
+
+    // Check text/number inputs
+    const emptyFields = [];
+    requiredFields.forEach(field => {
+        const element = document.getElementById(field.id);
+        if (element && (!element.value || element.value.trim() === '')) {
+            // Don't flag disabled fields that are intentionally empty
+            if (!element.disabled) {
+                emptyFields.push(field.name);
+            }
+        }
+    });
+
+    // Check radio groups - only flag if NO selection is made
+    const porodiceRadio = document.querySelector('input[name="porodicne-prilike"]:checked');
+    if (!porodiceRadio) {
+        emptyFields.push('Porodične prilike');
+    }
+
+    const zavrsneRadio = document.querySelector('input[name="zavrsne-kategorije"]:checked');
+    if (!zavrsneRadio) {
+        emptyFields.push('Završne kategorije');
+    }
+
+    return emptyFields;
+}
+
+// Update setupRequiredFieldListeners function
 function setupRequiredFieldListeners() {
+    const customToggle = document.getElementById('custom-faculty-toggle');
+    const baseRequiredFieldIds = [
+        'subject-number', 'jmbg', 'surname', 'father-name', 'name',
+        'nationality', 'phone', 'average-grade',
+        'household-members', 'grade1', 'grade2', 'grade3',
+        'grade4', 'grade5', 'grade6', 'grade7',
+        'u4', 'v4', 'w4', 'ah4'
+    ];
+
+    // Add faculty fields conditionally
+    const requiredFieldIds = [...baseRequiredFieldIds];
+    if (customToggle.checked) {
+        requiredFieldIds.push('custom-faculty');
+    } else {
+        requiredFieldIds.push('faculty-combined');
+    }
+
     // Text inputs
     const textInputs = document.querySelectorAll('input[type="text"], input[type="number"], select');
     textInputs.forEach(input => {
@@ -1231,63 +1305,34 @@ function setupRequiredFieldListeners() {
     });
 }
 
-// Helper function to check required fields
-function checkRequiredFields() {
-    const emptyFields = [];
+// Add this function to handle custom faculty toggle
+function handleCustomFacultyToggle() {
+    const customToggle = document.getElementById('custom-faculty-toggle');
+    const facultyDropdown = document.getElementById('faculty');
+    const customFacultyInput = document.getElementById('custom-faculty');
 
-    // Check text inputs
-    const requiredTextFields = [
-        { id: 'subject-number', name: 'Broj predmeta' },
-        { id: 'jmbg', name: 'JMBG' },
-        { id: 'surname', name: 'Prezime' },
-        { id: 'father-name', name: 'Ime oca' },
-        { id: 'name', name: 'Ime' },
-        { id: 'nationality', name: 'Nacionalnost' },
-        { id: 'phone', name: 'Telefon' },
-        { id: 'faculty', name: 'Fakultet' },
-        { id: 'average-grade', name: 'Prosjek ocjena' },
-        { id: 'household-members', name: 'Broj članova' },
-        { id: 'u4', name: 'Osnovna škola' },
-        { id: 'v4', name: 'Srednja škola' },
-        { id: 'w4', name: 'Fakultet' },
-        { id: 'ah4', name: 'Godina studija' }
-    ];
-
-    requiredTextFields.forEach(field => {
-        const element = document.getElementById(field.id);
-        if (element && (!element.value || element.value.trim() === '')) {
-            emptyFields.push(field.name);
-        }
-    });
-
-    // Check income fields (only non-disabled ones)
-    const incomeFields = [
-        { id: 'grade1', name: 'Mama I' },
-        { id: 'grade2', name: 'Mama II' },
-        { id: 'grade3', name: 'Mama III' },
-        { id: 'grade4', name: 'Tata I' },
-        { id: 'grade5', name: 'Tata II' },
-        { id: 'grade6', name: 'Tata III' },
-        { id: 'grade7', name: 'Baka/Sestra/Brat' }
-    ];
-
-    incomeFields.forEach(field => {
-        const element = document.getElementById(field.id);
-        if (element && !element.disabled && (!element.value || element.value.trim() === '')) {
-            emptyFields.push(field.name);
-        }
-    });
-
-    // Check radio groups - only flag if NO selection is made
-    const porodiceRadio = document.querySelector('input[name="porodicne-prilike"]:checked');
-    if (!porodiceRadio) {
-        emptyFields.push('Porodične prilike');
+    if (customToggle.checked) {
+        // Show custom input, hide dropdown requirement
+        customFacultyInput.style.display = 'block';
+        facultyDropdown.classList.remove('required-field-empty');
+        facultyDropdown.value = '';
+    } else {
+        // Hide custom input
+        customFacultyInput.style.display = 'none';
+        customFacultyInput.value = '';
     }
 
-    const zavrsneRadio = document.querySelector('input[name="zavrsne-kategorije"]:checked');
-    if (!zavrsneRadio) {
-        emptyFields.push('Završne kategorije');
-    }
-
-    return emptyFields;
+    updateFacultyCombined();
 }
+
+// Add event listener in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+    // ... existing code ...
+
+    const customFacultyToggle = document.getElementById('custom-faculty-toggle');
+    if (customFacultyToggle) {
+        customFacultyToggle.addEventListener('change', handleCustomFacultyToggle);
+    }
+
+    // ... rest of existing code ...
+});
