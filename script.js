@@ -121,16 +121,16 @@ function setupEventListeners() {
 
 // Function to generate table row
 function generateTableRow() {
-    // Get basic form values
+    // Get all the form values (existing code...)
     const brojPredmeta = document.getElementById('subject-number')?.value || '';
     const prezime = document.getElementById('surname')?.value || '';
     const imeOca = document.getElementById('father-name')?.value || '';
     const ime = document.getElementById('name')?.value || '';
     const nacionalnostFull = document.getElementById('nationality')?.value || '';
-    const nacionalnost = nacionalnostFull.charAt(0).toUpperCase(); // Get first letter and make it uppercase
+    const nacionalnost = nacionalnostFull.charAt(0).toUpperCase();
     const brojTelefona = document.getElementById('phone')?.value || '';
     const nazivFakulteta = document.getElementById('faculty')?.value || '';
-    const prosjekOcjena = (document.getElementById('average-grade')?.value || '').replace('.', ','); // Transform . to ,
+    const prosjekOcjena = (document.getElementById('average-grade')?.value || '').replace('.', ',');
     const gradePoints = document.getElementById('grade-points')?.textContent.replace('Bodovi: ', '') || '';
 
     // Get household and income data
@@ -143,7 +143,7 @@ function generateTableRow() {
     const tataIII = document.getElementById('grade6')?.value || '';
     const baka = document.getElementById('grade7')?.value || '';
 
-    // Get R4, S4, T4 values - also transform decimals to commas
+    // Get R4, S4, T4 values
     const r4 = (document.getElementById('total-average')?.textContent.replace('Prosjek: ', '').replace('—', '') || '').replace('.', ',');
     const s4 = (document.getElementById('ratio')?.textContent.replace('Prosjek / Broj članova: ', '').replace('—', '') || '').replace('.', ',');
     const t4 = document.getElementById('total-t4')?.textContent || '';
@@ -154,7 +154,7 @@ function generateTableRow() {
     const fakultet = document.getElementById('w4')?.value || '';
     const x4 = (document.getElementById('total-x4')?.textContent || '').replace('.', ',');
 
-    // Get category selections (porodične prilike) - put 1 for selected, 0 for not selected
+    // Get category selections
     const selectedCategory = document.querySelector('input[name="porodicne-prilike"]:checked');
     const categoryValue = selectedCategory ? selectedCategory.value : 'none';
 
@@ -168,12 +168,10 @@ function generateTableRow() {
     const studentRoditelj = categoryValue === 'af4' ? '1' : '0';
 
     const ag4 = document.getElementById('total-ag4')?.textContent || '';
-
-    // Get year of study
     const godinaStudija = document.getElementById('ah4')?.value || '';
     const ai4 = document.getElementById('total-ai4')?.textContent || '';
 
-    // Get final categories (završne kategorije) - put 1 for selected, 0 for not selected
+    // Get final categories
     const selectedZavrsne = document.querySelector('input[name="zavrsne-kategorije"]:checked');
     const zavrsneValue = selectedZavrsne ? selectedZavrsne.value : 'none';
 
@@ -181,82 +179,125 @@ function generateTableRow() {
     const sufinansira = zavrsneValue === 'ak4' ? '1' : '0';
 
     const al4 = document.getElementById('total-al4')?.textContent || '';
-    const am4 = (document.getElementById('final-total')?.textContent || '').replace('.', ','); // Transform final total as well
-
-    // Get notes
+    const am4 = (document.getElementById('final-total')?.textContent || '').replace('.', ',');
     const napomene = document.getElementById('napomena')?.value || '';
 
-    // Format the full name as "prezime (ime oca) i ime"
     const fullName = `${prezime} (${imeOca}) ${ime}`;
 
-    // Create table row with TAB separators for Excel compatibility
-    const tableRow = [
-        brojPredmeta,                    // Broj predmeta
-        brojPredmeta,                    // Broj predmeta (duplicate)
-        fullName,                        // prezime (ime oca) i ime
-        nacionalnost,                    // nacionalnost (first letter only, uppercase)
-        brojTelefona,                    // broj telefona
-        nazivFakulteta,                  // Naziv fakulteta
-        prosjekOcjena,                   // prosjek ocjena (with comma)
-        gradePoints,                     // grade-points
-        brojClanova,                     // broj članova domaćinstva
-        mamaI,                           // mama i
-        mamaII,                          // mama ii
-        mamaIII,                         // mama iii
-        tataI,                           // tata i
-        tataII,                          // tata ii
-        tataIII,                         // tata iii
-        baka,                            // baka
-        r4,                              // R4 (with comma)
-        s4,                              // S4 (with comma)
-        t4,                              // T4
-        osnovna,                         // osnovna
-        srednja,                         // srednja
-        fakultet,                        // fakultet
-        x4,                              // X4 (with comma)
-        bezObaRoditelja,                 // bez oba roditelja
-        bezJednogRoditelja,              // bez jednog roditelja
-        ratnihVojnihInvalida,            // ratnih vojnih invalida
-        invalidiRada,                    // invalidi rada min 50%
-        civilneZrtve,                    // civilne žrtve i logoraši
-        rastavljenih,                    // rastavljenih ili razvedeni
-        bracnaZajednica,                 // student koji je u bračnoj zajednici
-        studentRoditelj,                 // student koji je roditelj
-        ag4,                             // AG4
-        godinaStudija,                   // godina studija
-        ai4,                             // AI4
-        budzet,                          // BUDŽET
-        sufinansira,                     // SUFINANSIRA
-        al4,                             // AL4
-        am4,                             // AM4 (with comma)
-        napomene                         // Napomene
-    ].join('\t');
+    // Define headers and data arrays
+    const headers = [
+        'Broj predmeta', 'Broj predmeta (2)', 'Puno ime', 'Nac.', 'Telefon', 'Fakultet', 'Prosjek', 'Bodovi',
+        'Br. članova', 'Mama I', 'Mama II', 'Mama III', 'Tata I', 'Tata II', 'Tata III', 'Baka/Sestra/Brat',
+        'R4', 'S4', 'T4', 'Osnovna', 'Srednja', 'Fakultet', 'X4', 'Bez oba', 'Bez jednog', 'Ratni inv.',
+        'Inv. rada', 'Civilne žrtve', 'Rastavljeni', 'Bračna zajednica', 'Student roditelj', 'AG4',
+        'Godina studija', 'AI4', 'BUDŽET', 'SUFINANSIRA', 'AL4', 'AM4', 'Napomene'
+    ];
 
-    // Display the result
+    const dataValues = [
+        brojPredmeta, brojPredmeta, fullName, nacionalnost, brojTelefona, nazivFakulteta, prosjekOcjena, gradePoints,
+        brojClanova, mamaI, mamaII, mamaIII, tataI, tataII, tataIII, baka,
+        r4, s4, t4, osnovna, srednja, fakultet, x4, bezObaRoditelja, bezJednogRoditelja, ratnihVojnihInvalida,
+        invalidiRada, civilneZrtve, rastavljenih, bracnaZajednica, studentRoditelj, ag4,
+        godinaStudija, ai4, budzet, sufinansira, al4, am4, napomene
+    ];
+
+    // Create tab-separated string for clipboard
+    const tableRow = dataValues.join('\t');
+
+    // 1. IMMEDIATELY COPY TO CLIPBOARD
+    copyToClipboard(tableRow);
+
+    // 2. DOWNLOAD TIMESTAMPED EXCEL FILE
+    downloadExcelFile(headers, dataValues, fullName);
+
+    // Display the tab-separated text
     document.getElementById('table-row-text').value = tableRow;
     document.getElementById('table-row-output').style.display = 'block';
 
-    // Show success notification
-    showNotification('Kompletan red tabele je generiran za Excel!');
+    // 3. SCROLL BACK TO TOP
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 4. MESSAGE THAT IT IS COPIED TO CLIPBOARD
+    showNotification('Red tabele je kopiran u clipboard i Excel fajl je preuzet!');
 }
 
-// Function to copy table row to clipboard
+// Function to copy to clipboard
+function copyToClipboard(text) {
+    try {
+        // Try modern clipboard API first
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text);
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            textArea.remove();
+        }
+    } catch (err) {
+        console.error('Failed to copy to clipboard:', err);
+    }
+}
+
+// Function to download Excel file with timestamp
+function downloadExcelFile(headers, dataValues, studentName) {
+    try {
+        // Create timestamp
+        const now = new Date();
+        const timestamp = now.toISOString().slice(0, 19).replace(/[-:]/g, '').replace('T', '_');
+
+        // Clean student name for filename
+        const cleanName = studentName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+        const filename = `stipendija_${cleanName}_${timestamp}.xlsx`;
+
+        // Create worksheet data
+        const wsData = [headers, dataValues];
+
+        // Create workbook and worksheet
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+        // Auto-size columns
+        const colWidths = headers.map(() => ({ wch: 15 }));
+        ws['!cols'] = colWidths;
+
+        // Add worksheet to workbook
+        XLSX.utils.book_append_sheet(wb, ws, 'Stipendija');
+
+        // Download the file
+        XLSX.writeFile(wb, filename);
+
+    } catch (err) {
+        console.error('Failed to create Excel file:', err);
+        showNotification('Greška pri kreiranju Excel fajla!');
+    }
+}
+
+// Update the copy button function to work with the existing textarea
 function copyTableRow() {
     const textArea = document.getElementById('table-row-text');
-    textArea.select();
-    textArea.setSelectionRange(0, 99999); // For mobile devices
+    copyToClipboard(textArea.value);
 
-    try {
-        document.execCommand('copy');
-        showNotification('Red tabele je kopiran u clipboard!');
-    } catch (err) {
-        // Fallback for modern browsers
-        navigator.clipboard.writeText(textArea.value).then(() => {
-            showNotification('Red tabele je kopiran u clipboard!');
-        }).catch(() => {
-            showNotification('Greška pri kopiranju!');
-        });
-    }
+    // Change button text temporarily
+    const button = document.getElementById('copy-table-row');
+    const originalHTML = button.innerHTML;
+    button.innerHTML = 'Kopirano!';
+    button.classList.remove('btn-outline-secondary');
+    button.classList.add('btn-success');
+
+    setTimeout(() => {
+        button.innerHTML = originalHTML;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-outline-secondary');
+    }, 2000);
+
+    showNotification('Red tabele je kopiran u clipboard!');
 }
 
 // New handler for category radio buttons
