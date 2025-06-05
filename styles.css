@@ -273,6 +273,19 @@ header p {
   gap: 12px;
 }
 
+/* Carousel arrow color for tutorial modal */
+#tutorialCarousel .carousel-control-prev-icon,
+#tutorialCarousel .carousel-control-next-icon {
+  background-color: #31869b;
+  border-radius: 50%;
+  background-size: 60% 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 3rem;
+  height: 3rem;
+  opacity: 1;
+}
+
 .checkbox-label,
 .form-check-label {
   display: flex;
