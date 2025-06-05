@@ -14,12 +14,8 @@ let currentValues = {
         ac4: false, ad4: false, ae4: false, af4: false
     },
     ah4: 0,
-    aj4: false,
-    ak4: false
+    zavrsneKategorije: 'none' // Changed from aj4/ak4 to single field
 };
-
-// Global array to store all entries before export
-let allEntries = [];
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function () {
@@ -112,9 +108,11 @@ function setupEventListeners() {
     // Rating
     document.getElementById('ah4').addEventListener('change', handleRating);
 
-    // Final categories
-    document.getElementById('aj4').addEventListener('change', handleFinalCategories);
-    document.getElementById('ak4').addEventListener('change', handleFinalCategories);
+    // Final categories - Update to handle radio button group
+    const zavrsneRadios = document.querySelectorAll('input[name="zavrsne-kategorije"]');
+    zavrsneRadios.forEach(radio => {
+        radio.addEventListener('change', handleFinalCategories);
+    });
 }
 
 // New handler for category radio buttons
@@ -202,10 +200,13 @@ function calculateAI4(ah4) {
 }
 
 // AL4 Function: Final category points
-function calculateAL4(aj4, ak4) {
-    if (aj4) return 30;
-    if (ak4) return 25;
-    return 0;
+function calculateAL4(zavrsneKategorije) {
+    switch (zavrsneKategorije) {
+        case 'aj4': return 30; // BUDŽET
+        case 'ak4': return 25; // SUFINANSIRA
+        case 'none':
+        default: return 0; // Bez kategorije (Privatni fakultet)
+    }
 }
 
 // R4 Function: Average income calculation (Prosjek)
@@ -314,8 +315,8 @@ function handleRating() {
 }
 
 function handleFinalCategories() {
-    currentValues.aj4 = document.getElementById('aj4').checked;
-    currentValues.ak4 = document.getElementById('ak4').checked;
+    const selectedRadio = document.querySelector('input[name="zavrsne-kategorije"]:checked');
+    currentValues.zavrsneKategorije = selectedRadio ? selectedRadio.value : 'none';
     calculateAll();
 }
 
@@ -463,8 +464,8 @@ function calculateAll() {
     document.getElementById('ai4-points').textContent = `Bodovi: ${ai4Display}`;
     document.getElementById('total-ai4').textContent = ai4Display;
 
-    // Calculate AL4 (Final category points)
-    const al4 = calculateAL4(currentValues.aj4, currentValues.ak4);
+    // Calculate AL4 (Final category points) - Updated to use new structure
+    const al4 = calculateAL4(currentValues.zavrsneKategorije);
     document.getElementById('al4-points').textContent = `Bodovi: ${al4}`;
     document.getElementById('total-al4').textContent = al4.toString();    // Calculate R4, S4, T4 (Socio-economic status points)
     const r4 = calculateR4(currentValues.grade1, currentValues.grade2, currentValues.grade3, currentValues.grade4, currentValues.grade5, currentValues.grade6, currentValues.grade7);
@@ -492,221 +493,6 @@ function calculateAll() {
         ai4Element.classList.remove('error');
     }
 }
-
-// Excel export functionality
-function exportToExcel() {
-    // Collect all form values
-    const data = [
-        {
-            'Broj predmeta': document.getElementById('subject-number').value,
-            'JMBG': document.getElementById('jmbg').value,
-            'Prezime': document.getElementById('surname').value,
-            'Ime oca': document.getElementById('father-name').value,
-            'Ime': document.getElementById('name').value,
-            'Nacionalnost': document.getElementById('nationality').value,
-            'Broj telefona': document.getElementById('phone').value,
-            'Naziv fakulteta': document.getElementById('faculty').value,
-            'Prosjek ocjena': document.getElementById('average-grade').value,
-            'Broj bodova/ECTS': document.getElementById('credits').value,
-            'Posebna': document.getElementById('u4').value,
-            'Invalida': document.getElementById('v4').value,
-            'Fakultet (dodatno)': document.getElementById('w4').value,
-            'Boračka': document.getElementById('y4').checked ? 'DA' : '',
-            'Bez oba roditelja': document.getElementById('z4').checked ? 'DA' : '',
-            'Vojnih invalida': document.getElementById('aa4').checked ? 'DA' : '',
-            'Poginulih za oslobođenje': document.getElementById('ab4').checked ? 'DA' : '',
-            'Mučenika': document.getElementById('ac4').checked ? 'DA' : '',
-            'Ratnih vojnih invalida': document.getElementById('ad4').checked ? 'DA' : '',
-            'Časnih žena i domobrana': document.getElementById('ae4').checked ? 'DA' : '',
-            'Studenata koji polažu': document.getElementById('af4').checked ? 'DA' : '',
-            'Godina studija': document.getElementById('ah4').value,
-            'BUDŽET': document.getElementById('aj4').checked ? 'DA' : '',
-            'SAMOFINANSIRANJE': document.getElementById('ak4').checked ? 'DA' : '',
-            'Bodovi za Ocjene (I4)': document.getElementById('total-i4').textContent,
-            'Dodatni Bodovi (X4)': document.getElementById('total-x4').textContent,
-            'Bodovi za Kategorije (AG4)': document.getElementById('total-ag4').textContent,
-            'Bodovi za Ocjenu (AI4)': document.getElementById('total-ai4').textContent,
-            'Završni Bodovi (AL4)': document.getElementById('total-al4').textContent,
-            'Ukupno Bodova (AM)': document.getElementById('final-total').textContent,
-            'Napomena': document.getElementById('napomena').value
-        }
-    ];
-
-    // Create worksheet and workbook
-    const ws = XLSX.utils.json_to_sheet(data);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Stipendija');
-
-    // Export to file
-    XLSX.writeFile(wb, 'stipendija.xlsx');
-}
-
-// Collect form data
-function collectFormData() {
-    const selectedCategory = document.querySelector('input[name="porodicne-prilike"]:checked');
-    const categoryValue = selectedCategory ? selectedCategory.value : 'none';
-
-    const data = {
-        'Broj predmeta': document.getElementById('subject-number').value,
-        'JMBG': document.getElementById('jmbg').value,
-        'Prezime': document.getElementById('surname').value,
-        'Ime oca': document.getElementById('father-name').value,
-        'Ime': document.getElementById('name').value,
-        'Nacionalnost': document.getElementById('nationality').value,
-        'Broj telefona': document.getElementById('phone').value,
-        'Naziv fakulteta': document.getElementById('faculty').value,
-        'Prosjek ocjena': document.getElementById('average-grade').value,
-        'Broj bodova/ECTS': document.getElementById('credits').value,
-        'Posebna': document.getElementById('u4').value,
-        'Invalida': document.getElementById('v4').value,
-        'Fakultet (dodatno)': document.getElementById('w4').value,
-        'Porodične prilike': getCategoryLabel(categoryValue),
-        'Godina studija': document.getElementById('ah4').value,
-        'BUDŽET': document.getElementById('aj4').checked ? 'DA' : '',
-        'SAMOFINANSIRANJE': document.getElementById('ak4').checked ? 'DA' : '',
-        'Bodovi za Ocjene (I4)': document.getElementById('total-i4').textContent,
-        'Dodatni Bodovi (X4)': document.getElementById('total-x4').textContent,
-        'Bodovi za Kategorije (AG4)': document.getElementById('total-ag4').textContent,
-        'Bodovi za Ocjenu (AI4)': document.getElementById('total-ai4').textContent,
-        'Završni Bodovi (AL4)': document.getElementById('total-al4').textContent,
-        'Ukupno Bodova (AM)': document.getElementById('final-total').textContent,
-        'Napomena': document.getElementById('napomena').value
-    };
-    return data;
-}
-
-// Helper function to get category label for export
-function getCategoryLabel(categoryValue) {
-    const labels = {
-        'y4': 'Bez oba roditelja',
-        'z4': 'Bez jednog roditelja',
-        'aa4': 'Ratnih vojnih invalida od 1. do 10.kategorije',
-        'ab4': 'Invalidi rada min 50%',
-        'ac4': 'Civilne žrtve i logoraši',
-        'ad4': 'Rastavljenih ili razvedeni',
-        'ae4': 'Student koji je u bračnoj zajednici',
-        'af4': 'Student koji je roditelj',
-        'none': ''
-    };
-    return labels[categoryValue] || '';
-}
-
-function resetForm() {
-    const ids = [
-        'subject-number', 'jmbg', 'surname', 'father-name', 'name', 'nationality', 'phone', 'faculty', 'average-grade',
-        'credits', 'u4', 'v4', 'w4'
-    ];
-    ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            if (el.type === 'checkbox') el.checked = false;
-            else el.value = '';
-        }
-    });
-
-    // Reset category radio buttons to "none"
-    const noneRadio = document.getElementById('none');
-    if (noneRadio) noneRadio.checked = true;
-
-    // Reset selects
-    const ah4 = document.getElementById('ah4');
-    if (ah4) ah4.value = '';
-
-    // Reset final category checkboxes
-    ['aj4', 'ak4'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.checked = false;
-    });
-
-    calculateAll();
-}
-
-function exportAllEntriesToExcel() {
-    if (allEntries.length === 0) return;
-    // Ensure each entry has Napomena
-    allEntries = allEntries.map(entry => {
-        return { ...entry, Napomena: document.getElementById('napomena').value };
-    });
-    const ws = XLSX.utils.json_to_sheet(allEntries);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Stipendija');
-    XLSX.writeFile(wb, 'stipendija.xlsx');
-}
-
-// --- TEMPORARY SAVE/LOAD SESSION ---
-// Download allEntries as JSON
-function saveSessionToFile() {
-    if (allEntries.length === 0) return;
-    const dataStr = JSON.stringify(allEntries, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const now = new Date();
-    const pad = n => n.toString().padStart(2, '0');
-    const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}`;
-    const filename = `stipendija_sesija_${dateStr}.json`;
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
-// Load session from JSON file and merge into allEntries
-function loadSessionFromFile(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        try {
-            const loaded = JSON.parse(e.target.result);
-            if (Array.isArray(loaded)) {
-                allEntries = allEntries.concat(loaded);
-                alert('Sesija uspješno učitana! Možete nastaviti unos.');
-            } else {
-                alert('Neispravan format datoteke.');
-            }
-        } catch (err) {
-            alert('Greška pri učitavanju sesije.');
-        }
-        // Reset file input so same file can be loaded again if needed
-        event.target.value = '';
-    };
-    reader.readAsText(file);
-}
-
-window.addEventListener('DOMContentLoaded', function () {
-    const btnFinish = document.getElementById('export-excel-finish');
-    const btnAppend = document.getElementById('export-excel-append');
-    const btnLoadSession = document.getElementById('load-session');
-    const inputLoadSession = document.getElementById('load-session-input');
-    if (btnFinish) {
-        btnFinish.addEventListener('click', function () {
-            allEntries.push(collectFormData());
-            exportAllEntriesToExcel();
-            // Disable all inputs to end session
-            document.querySelectorAll('input, select, button').forEach(el => {
-                if (el.id !== 'export-excel-finish' && el.id !== 'export-excel-append') el.disabled = true;
-            });
-        });
-    }
-    if (btnAppend) {
-        btnAppend.addEventListener('click', function () {
-            allEntries.push(collectFormData());
-            resetForm();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            showNotification('Unos je sačuvan!');
-            saveSessionToFile(); // Save session automatically
-        });
-    }
-    if (btnLoadSession && inputLoadSession) {
-        btnLoadSession.addEventListener('click', function () {
-            inputLoadSession.click();
-        });
-        inputLoadSession.addEventListener('change', loadSessionFromFile);
-    }
-});
 
 // Utility functions
 function formatNumber(num, decimals = 2) {
@@ -751,4 +537,22 @@ if (typeof module !== 'undefined' && module.exports) {
         calculateAI4,
         calculateAL4
     };
+}
+
+// Remove the duplicate export button event listener (lines 497-507) and keep only the one in the DOMContentLoaded event
+
+// Add the missing getCategoryLabel function:
+function getCategoryLabel(categoryValue) {
+    const labels = {
+        'y4': 'Bez oba roditelja',
+        'z4': 'Bez jednog roditelja',
+        'aa4': 'Ratnih vojnih invalida od 1. do 10.kategorije',
+        'ab4': 'Invalidi rada min 50%',
+        'ac4': 'Civilne žrtve i logoraši',
+        'ad4': 'Rastavljenih ili razvedeni',
+        'ae4': 'Student koji je u bračnoj zajednici',
+        'af4': 'Student koji je roditelj',
+        'none': 'Bez kategorije'
+    };
+    return labels[categoryValue] || '';
 }

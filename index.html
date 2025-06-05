@@ -86,14 +86,15 @@
                     <h2 class="mb-4">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h2>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label for="household-members" class="form-label">Broj članova domaćinstva (J4):</label>
+                            <label for="household-members" class="form-label">Broj članova domaćinstva:</label>
                             <input type="number" id="household-members" class="form-control" min="1" step="1"
                                 placeholder="Unesite broj članova">
                         </div>
                     </div>
+                    <hr class="hr hr-blurry" />
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label for="grade1" class="form-label">Mama - I (K4):</label>
+                            <label for="grade1" class="form-label">Mama - I:</label>
                             <input type="number" id="grade1" class="form-control" min="0" step="0.01"
                                 placeholder="Primanja majke">
                             <div class="form-check mt-1">
@@ -115,7 +116,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="grade2" class="form-label">Mama - II (L4):</label>
+                            <label for="grade2" class="form-label">Mama - II:</label>
                             <input type="number" id="grade2" class="form-control" min="0" step="0.01"
                                 placeholder="Dodatna primanja majke">
                             <div class="form-check mt-1">
@@ -137,7 +138,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="grade3" class="form-label">Mama - III (M4):</label>
+                            <label for="grade3" class="form-label">Mama - III:</label>
                             <input type="number" id="grade3" class="form-control" min="0" step="0.01"
                                 placeholder="Ostala primanja majke">
                             <div class="form-check mt-1">
@@ -158,8 +159,9 @@
                                     dokaz o nezaposlenosti</label>
                             </div>
                         </div>
+                        <hr class="hr hr-blurry" />
                         <div class="col-md-4">
-                            <label for="grade4" class="form-label">Tata - I (N4):</label>
+                            <label for="grade4" class="form-label">Tata - I:</label>
                             <input type="number" id="grade4" class="form-control" min="0" step="0.01"
                                 placeholder="Primanja oca">
                             <div class="form-check mt-1">
@@ -181,7 +183,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="grade5" class="form-label">Tata - II (O4):</label>
+                            <label for="grade5" class="form-label">Tata - II:</label>
                             <input type="number" id="grade5" class="form-control" min="0" step="0.01"
                                 placeholder="Dodatna primanja oca">
                             <div class="form-check mt-1">
@@ -203,7 +205,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="grade6" class="form-label">Tata - III (P4):</label>
+                            <label for="grade6" class="form-label">Tata - III:</label>
                             <input type="number" id="grade6" class="form-control" min="0" step="0.01"
                                 placeholder="Ostala primanja oca">
                             <div class="form-check mt-1">
@@ -225,14 +227,14 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="grade7" class="form-label">Baka/Sestra/Brat (Q4):</label>
+                            <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
                             <input type="number" id="grade7" class="form-control" min="0" step="0.01"
                                 placeholder="Ostala primanja">
                         </div>
                     </div>
                     <div class="calculation-results mt-3">
                         <div class="result" id="total-average">Prosjek: 0</div>
-                        <div class="result" id="ratio">Prosjek / Broj članova (S4): 0</div>
+                        <div class="result" id="ratio">Prosjek / Broj članova: 0</div>
                         <div class="result" id="ratio-points">Bodovi za ekonomski status (T4): 0</div>
                     </div>
                 </div>
@@ -370,7 +372,6 @@
                                     value="aj4">
                                 <label class="form-check-label" for="aj4">BUDŽET (studij finansira iz budžetskih
                                     sredstava države, entiteta ili kantona)
-
                                 </label>
                             </div>
                         </div>
@@ -380,7 +381,6 @@
                                     value="ak4">
                                 <label class="form-check-label" for="ak4">SUFINANSIRA (sufinansira ili samofinansira
                                     studij na javnoj visokoškolskoj ustanovi)
-
                                 </label>
                             </div>
                         </div>
@@ -395,19 +395,19 @@
                             <span id="total-i4">0</span>
                         </div>
                         <div class="breakdown-item">
-                            <span>Bodovi za Ratio:</span>
+                            <span>Bodovi za ekonomski status:</span>
                             <span id="total-t4">0</span>
                         </div>
                         <div class="breakdown-item">
-                            <span>Dodatni Bodovi:</span>
+                            <span>Dodatni Kriteriji:</span>
                             <span id="total-x4">0</span>
                         </div>
                         <div class="breakdown-item">
-                            <span>Bodovi za Kategorije:</span>
+                            <span>Bodovi za Porodične Prilike:</span>
                             <span id="total-ag4">0</span>
                         </div>
                         <div class="breakdown-item">
-                            <span>Bodovi za Ocjenu:</span>
+                            <span>Bodovi za Dostignuto obrazovanje:</span>
                             <span id="total-ai4">0</span>
                         </div>
                         <div class="breakdown-item">
@@ -417,17 +417,6 @@
                     </div>
                     <div class="final-total bg-white shadow-sm rounded-3 p-3 mb-3">
                         <strong>Ukupno Bodova: <span id="final-total">0</span></strong>
-                    </div>
-                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-                        <button id="export-excel-finish" type="button" class="btn btn-success btn-lg">Završi i izvezi u
-                            Excel
-                        </button>
-                        <button id="export-excel-append" type="button" class="btn btn-outline-primary btn-lg">Dodaj još
-                            jedan
-                            unos</button>
-                        <button id="load-session" type="button" class="btn btn-warning btn-lg">Učitaj prethodnu sesiju
-                        </button>
-                        <input type="file" id="load-session-input" accept="application/json" style="display:none;">
                     </div>
                 </div>
                 <!-- Napomena field at the bottom of the form -->
