@@ -465,16 +465,16 @@ function calculateAll() {
 
     // Calculate AL4 (Final category points)
     const al4 = calculateAL4(currentValues.aj4, currentValues.ak4);
-    document.getElementById('al4-points').textContent = `AL4 Bodovi: ${al4}`;
+    document.getElementById('al4-points').textContent = `Bodovi: ${al4}`;
     document.getElementById('total-al4').textContent = al4.toString();    // Calculate R4, S4, T4 (Socio-economic status points)
     const r4 = calculateR4(currentValues.grade1, currentValues.grade2, currentValues.grade3, currentValues.grade4, currentValues.grade5, currentValues.grade6, currentValues.grade7);
     const s4 = calculateS4(r4, currentValues.householdMembers);
     const t4 = calculateT4(s4);
 
     // Display R4, S4, T4 values (using correct DOM element IDs)
-    document.getElementById('total-average').textContent = `Prosjek (R4): ${r4 === null ? '—' : r4.toFixed(2)}`;
-    document.getElementById('ratio').textContent = `Prosjek / Broj članova (S4): ${s4 === null ? '—' : s4.toFixed(2)}`;
-    document.getElementById('ratio-points').textContent = `Bodovi za ekonomski status (T4): ${t4}`;
+    document.getElementById('total-average').textContent = `Prosjek: ${r4 === null ? '—' : r4.toFixed(2)}`;
+    document.getElementById('ratio').textContent = `Prosjek / Broj članova: ${s4 === null ? '—' : s4.toFixed(2)}`;
+    document.getElementById('ratio-points').textContent = `Bodovi za ekonomski status: ${t4}`;
 
     // Update the breakdown display for T4 (T4 is always a number, never null)
     document.getElementById('total-t4').textContent = t4.toString();
