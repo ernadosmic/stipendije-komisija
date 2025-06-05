@@ -754,13 +754,13 @@ function showNotification(message) {
         toast.id = 'copilot-toast';
         toast.className = 'toast align-items-center text-bg-success border-0 position-fixed top-0 start-50 translate-middle-x mt-4';
         toast.style.zIndex = 9999;
-        toast.style.minWidth = '220px';
+        toast.style.minWidth = '550px';
         toast.innerHTML = `<div class="d-flex"><div class="toast-body">${message}</div></div>`;
         document.body.appendChild(toast);
     } else {
         toast.querySelector('.toast-body').textContent = message;
     }
-    const bsToast = bootstrap.Toast.getOrCreateInstance(toast, { delay: 1800 });
+    const bsToast = bootstrap.Toast.getOrCreateInstance(toast, { delay: 5000 });
     bsToast.show();
 }
 
