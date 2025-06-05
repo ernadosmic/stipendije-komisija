@@ -12,6 +12,12 @@ body {
   color: #111827;
 }
 
+@media screen and (max-width: 1072px) {
+  body {
+    padding: 0px;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -99,6 +105,26 @@ header p {
   outline: none;
   border-color: #31869b;
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* Mobile responsive styles for header buttons */
+@media (max-width: 1072px) {
+  header .mt-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header .btn,
+  header a.btn {
+    margin: 0 0 10px 0 !important;
+    width: 90%;
+  }
+
+  header .btn:last-child,
+  header a.btn:last-child {
+    margin-bottom: 0 !important;
+  }
 }
 
 .form-check-input:checked {
@@ -241,6 +267,17 @@ header p {
 .btn-success:hover {
   background: #16a34a;
 }
+
+/* Custom styling for Generate Table Row button */
+#generate-table-row {
+  background-color: #16a34a;
+  color: #ffffff;
+  margin: 0 auto;
+  display: inline-block;
+}
+#generate-table-row:hover {
+  background-color: #15803d;
+}
 .btn-warning {
   background: #facc15;
   color: #111827;
@@ -317,7 +354,7 @@ header p {
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    margin: 8px;
+    margin: 0px;
   }
   .form-container {
     padding: 12px;
