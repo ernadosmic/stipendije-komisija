@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
             customFaculty.style.display = 'none';
         }
         updateFacultyCombined();
+
+        // Revalidate fields when toggle changes
+        highlightRequiredFields();
     });
 
     facultySelect.addEventListener('change', updateFacultyCombined);
@@ -1135,9 +1138,7 @@ function highlightRequiredFields() {
         'name',
         'nationality',
         'phone',
-        'faculty-extra',
-        'faculty',
-        'custom-faculty',
+        'faculty-extra',  // Always check faculty-extra
         'average-grade',
         // Socio-economic status
         'household-members',
@@ -1149,6 +1150,14 @@ function highlightRequiredFields() {
         // Year of study
         'ah4'
     ];
+
+    // Add appropriate faculty field based on toggle
+    const customToggle = document.getElementById('custom-faculty-toggle');
+    if (customToggle.checked) {
+        requiredFields.push('custom-faculty');
+    } else {
+        requiredFields.push('faculty');
+    }
 
     // Check text/number inputs
     requiredFields.forEach(fieldId => {
@@ -1200,31 +1209,38 @@ function checkRequiredFields() {
     const customToggle = document.getElementById('custom-faculty-toggle');
     const requiredFields = [
         // Basic information
-        'subject-number',
-        'jmbg',
-        'surname',
-        'father-name',
-        'name',
-        'nationality',
-        'phone',
-        'average-grade',
+        { id: 'subject-number', name: 'Broj predmeta' },
+        { id: 'jmbg', name: 'JMBG' },
+        { id: 'surname', name: 'Prezime' },
+        { id: 'father-name', name: 'Ime oca' },
+        { id: 'name', name: 'Ime' },
+        { id: 'nationality', name: 'Nacionalnost' },
+        { id: 'phone', name: 'Broj telefona' },
+        { id: 'average-grade', name: 'Prosjek ocjena' },
         // Socio-economic status
-        'household-members',
-        'grade1', 'grade2', 'grade3',
-        'grade4', 'grade5', 'grade6',
-        'grade7',
-        // Additional criteria (u4, v4, w4) - these are required too
-        'u4', 'v4', 'w4',
+        { id: 'household-members', name: 'Broj članova domaćinstva' },
+        { id: 'grade1', name: 'Mama I' },
+        { id: 'grade2', name: 'Mama II' },
+        { id: 'grade3', name: 'Mama III' },
+        { id: 'grade4', name: 'Tata I' },
+        { id: 'grade5', name: 'Tata II' },
+        { id: 'grade6', name: 'Tata III' },
+        { id: 'grade7', name: 'Baka/Sestra/Brat' },
+        // Additional criteria
+        { id: 'u4', name: 'Osnovna škola' },
+        { id: 'v4', name: 'Srednja škola' },
+        { id: 'w4', name: 'Fakultet' },
         // Year of study
-        'ah4'
+        { id: 'ah4', name: 'Godina studija' },
+        // Faculty-extra is always required
+        { id: 'faculty-extra', name: 'Fakultet' }
     ];
 
     // Add faculty field conditionally
     if (customToggle.checked) {
         requiredFields.push({ id: 'custom-faculty', name: 'Naziv univerziteta' });
     } else {
-        requiredFields.push({ id: 'faculty-combined', name: 'Fakultet' });
-        requiredFields.push({ id: 'faculty' });
+        requiredFields.push({ id: 'faculty', name: 'Naziv univerziteta' });
     }
 
     // Check text/number inputs
@@ -1261,17 +1277,14 @@ function setupRequiredFieldListeners() {
         'nationality', 'phone', 'average-grade',
         'household-members', 'grade1', 'grade2', 'grade3',
         'grade4', 'grade5', 'grade6', 'grade7',
-        'u4', 'v4', 'w4', 'ah4'
+        'u4', 'v4', 'w4', 'ah4',
+        'faculty-extra'  // Always monitor faculty-extra
     ];
 
     // Add faculty fields conditionally
     const requiredFieldIds = [...baseRequiredFieldIds];
-    if (customToggle.checked) {
-        requiredFieldIds.push('custom-faculty');
-    } else {
-        requiredFieldIds.push('faculty-combined');
-        requiredFieldIds.push('faculty');
-    }
+    requiredFieldIds.push('custom-faculty');
+    requiredFieldIds.push('faculty');
 
     // Text/number/select inputs
     requiredFieldIds.forEach(id => {
@@ -1288,11 +1301,10 @@ function setupRequiredFieldListeners() {
         radio.addEventListener('change', highlightRequiredFields);
     });
 
-    // Checkboxes (if you want to highlight them, but usually not needed)
-    // const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    // checkboxes.forEach(checkbox => {
-    //     checkbox.addEventListener('change', highlightRequiredFields);
-    // });
+    // Monitor the toggle to re-check highlighting when it changes
+    if (customToggle) {
+        customToggle.addEventListener('change', highlightRequiredFields);
+    }
 }
 
 // Add this function to handle custom faculty toggle
@@ -1302,17 +1314,22 @@ function handleCustomFacultyToggle() {
     const customFacultyInput = document.getElementById('custom-faculty');
 
     if (customToggle.checked) {
-        // Show custom input, hide dropdown requirement
+        // Show custom input, hide dropdown
+        facultyDropdown.style.display = 'none';
         customFacultyInput.style.display = 'block';
-        facultyDropdown.classList.remove('required-field-empty');
-        facultyDropdown.value = '';
+        facultyDropdown.classList.remove('required-field');
     } else {
-        // Hide custom input
+        // Show dropdown, hide custom input
+        facultyDropdown.style.display = 'block';
         customFacultyInput.style.display = 'none';
+        customFacultyInput.classList.remove('required-field');
         customFacultyInput.value = '';
     }
 
     updateFacultyCombined();
+
+    // Recheck validation highlighting
+    highlightRequiredFields();
 }
 
 // Add event listener in DOMContentLoaded
