@@ -13,7 +13,7 @@
 
 <body>
     <div class="container my-4 p-0 shadow-lg rounded-4 bg-white">
-        <header class="bg-primary bg-gradient text-white p-4 rounded-top-4 mb-0">
+        <header style="background-color: #31869B;" class="text-white p-4 rounded-top-4 mb-0">
             <h1 class="display-5 fw-bold">Kalkulator za Stipendiju</h1>
             <!-- Add the control buttons -->
             <div class="mt-3">
@@ -23,9 +23,9 @@
                 <button type="button" id="populate-random" class="btn btn-outline-light me-2">
                     <i class="bi bi-shuffle"></i> Nasumično popuni (test)
                 </button>
-                <a href="assets/STIPENDIJE 2025 - prazna.xlsx" download="STIPENDIJE 2025 - prazna.xlsx"
+                <a href="assets/Tabela za stipendije - prazna.xlsx" download="Tabela za stipendije - prazna.xlsx"
                     class="btn btn-outline-light">
-                    <i class="bi bi-download"></i> Preuzmi tabelu
+                    <i class="bi bi-download"></i> Preuzmi praznu tabelu
                 </a>
             </div>
         </header>
@@ -34,10 +34,10 @@
                 <div class="section mb-4">
 
                     <div class="section mb-4">
-                        <h2 class="mb-4">Dokumenti (priloženi)</h2>
+                        <h2 class="mb-4">Dokumenti</h2>
                         <div class="row g-2">
                             <div class="col-md-6">
-                                <label class="form-label">Student je rođen u Brčkom?</label>
+                                <label class="form-label"><strong>Student je rođen u Brčkom?</strong></label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="rodjen-brcko"
                                         id="rodjen-brcko-da" value="da" checked>
@@ -163,17 +163,21 @@
                                     </option>
                                     <option value="Univerzitet u Banjoj Luci">Univerzitet u Banjoj Luci</option>
                                     <option value="Univerzitet u Novom Sadu">Univerzitet u Novom Sadu</option>
+                                    <option value="Sveučilište u Mostaru">Sveučilište u Mostaru</option>
+                                    <option value="Evropski univerzitet Brčko">Evropski univerzitet Brčko</option>
+                                    <option value="Internacionalni univerzitet Brčko">Internacionalni univerzitet Brčko
+                                    </option>
                                 </select>
 
                                 <input type="text" id="custom-faculty" class="form-control mb-2"
-                                    placeholder="Unesite naziv univerziteta" style="display:none;">
+                                    placeholder="Unesite naziv univerziteta..." style="display:none;">
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="checkbox" id="custom-faculty-toggle">
                                     <label class="form-check-label" for="custom-faculty-toggle">Unesi vlastiti
                                         naziv univerziteta</label>
                                 </div>
                                 <input type="text" id="faculty-extra" class="form-control mb-2"
-                                    placeholder="Unesite fakultet">
+                                    placeholder="Unesite fakultet...">
                                 <input type="text" id="faculty-combined" class="form-control"
                                     placeholder="Kombinovani naziv fakulteta" disabled>
                             </div>

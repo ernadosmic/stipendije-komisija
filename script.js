@@ -670,30 +670,30 @@ function updateNapomena() {
 
     let missing = [];
 
-    missing.push('• Potvrda ili uvjerenje o mjestu prebivališta studenta i njegovih roditelja ili staratelja pribavlja se po službenoj dužnosti (Odluka, član V, stavka b)');
+    missing.push('→ Potvrda ili uvjerenje o mjestu prebivališta studenta i njegovih roditelja ili staratelja pribavlja se po službenoj dužnosti (Odluka, član V, stavka b)');
 
     // If born in Brčko, add note about residence
     if (rodjenBrcko === 'da') {
-        missing.push('• Izvod iz matične knjige rođenih se pribavlja po službenoj dužnosti');
+        missing.push('→ Izvod iz matične knjige rođenih se pribavlja po službenoj dužnosti');
 
     }
 
     // Only check rodni list if student is NOT born in Brčko AND checkbox is not checked
     if (rodjenBrcko === 'ne' && !rodniList) {
-        missing.push('• KONTAKTIRATI: Nedostaje rodni list za studenta koji nije upisan u matičnu knjigu rođenih u Distriktu (Javni poziv, član V)');
+        missing.push('→ DOPUNA: Nedostaje rodni list za studenta koji nije upisan u matičnu knjigu rođenih u Distriktu (Javni poziv, član V)');
     }
 
-    if (!potvrdaUpis) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje o upisu godine studija');
-    if (!potvrdaIspiti) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje o položenim ispitima');
-    if (!izjavaDomacinstvo) missing.push('• KONTAKTIRATI: Izjava o zajedničkom domaćinstvu');
-    if (!izjava) missing.push('• KONTAKTIRATI: Izjava o neprimanju stipendija');
-    if (!potvrdaFinansiranje) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje da se studij finansira iz budžetskih sredstava ili sufinansira na javnoj viosokoškolskoj ustanovi');
+    if (!potvrdaUpis) missing.push('→ DOPUNA: Nedostaje potvrda ili uvjerenje o upisu na godinu studija');
+    if (!potvrdaIspiti) missing.push('→ DOPUNA: Nedostaje potvrda ili uvjerenje o položenim ispitima');
+    if (!izjavaDomacinstvo) missing.push('→ DOPUNA: Nedostaje izjava o zajedničkom domaćinstvu');
+    if (!izjava) missing.push('→ DOPUNA: Nedostaje izjava o neprimanju stipendija');
+    if (!potvrdaFinansiranje) missing.push('→ DOPUNA: Nedostaje potvrda ili uvjerenje da se studij finansira iz budžetskih sredstava ili sufinansira na javnoj viosokoškolskoj ustanovi');
 
     const napomena = document.getElementById('napomena');
     if (missing.length === 0) {
         napomena.value = '';
     } else {
-        napomena.value = 'Nedostaju dokumenti:\n' + missing.join('\n');
+        napomena.value = '' + missing.join('; ');
     }
 
     // Auto-resize textarea to fit content
