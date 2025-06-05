@@ -1,7 +1,6 @@
 // Global variables to store current values
 let currentValues = {
     averageGrade: 0,
-    credits: 0,
     u4: 0,
     v4: 0,
     w4: 0,
@@ -75,7 +74,6 @@ function initializeRadioButtonStates() {
 function setupEventListeners() {
     // Basic information
     document.getElementById('average-grade').addEventListener('input', handleAverageGrade);
-    document.getElementById('credits').addEventListener('input', handleCredits);
 
     // Faculty field (optional, no calculation needed)
     if (document.getElementById('faculty')) {
@@ -254,11 +252,6 @@ function calculateT4(s4) {
 // Event handlers
 function handleAverageGrade() {
     currentValues.averageGrade = parseFloat(this.value) || 0;
-    calculateAll();
-}
-
-function handleCredits() {
-    currentValues.credits = parseFloat(this.value) || 0;
     calculateAll();
 }
 
@@ -445,7 +438,7 @@ function calculateAll() {
 
     // Calculate X4 (Additional criteria points)
     const x4 = calculateX4(currentValues.u4, currentValues.v4, currentValues.w4);
-    document.getElementById('x4-points').textContent = `X4 Bodovi: ${x4.toFixed(2)}`;
+    document.getElementById('x4-points').textContent = `Bodovi: ${x4.toFixed(2)}`;
     document.getElementById('total-x4').textContent = x4.toFixed(2);
 
     // Calculate AG4 (Category points)
