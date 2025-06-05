@@ -113,6 +113,150 @@ function setupEventListeners() {
     zavrsneRadios.forEach(radio => {
         radio.addEventListener('change', handleFinalCategories);
     });
+
+    // Add event listener for generate table row button
+    document.getElementById('generate-table-row').addEventListener('click', generateTableRow);
+    document.getElementById('copy-table-row').addEventListener('click', copyTableRow);
+}
+
+// Function to generate table row
+function generateTableRow() {
+    // Get basic form values
+    const brojPredmeta = document.getElementById('subject-number')?.value || '';
+    const prezime = document.getElementById('surname')?.value || '';
+    const imeOca = document.getElementById('father-name')?.value || '';
+    const ime = document.getElementById('name')?.value || '';
+    const nacionalnostFull = document.getElementById('nationality')?.value || '';
+    const nacionalnost = nacionalnostFull.charAt(0).toUpperCase(); // Get first letter and make it uppercase
+    const brojTelefona = document.getElementById('phone')?.value || '';
+    const nazivFakulteta = document.getElementById('faculty')?.value || '';
+    const prosjekOcjena = (document.getElementById('average-grade')?.value || '').replace('.', ','); // Transform . to ,
+    const gradePoints = document.getElementById('grade-points')?.textContent.replace('Bodovi: ', '') || '';
+
+    // Get household and income data
+    const brojClanova = document.getElementById('household-members')?.value || '';
+    const mamaI = document.getElementById('grade1')?.value || '';
+    const mamaII = document.getElementById('grade2')?.value || '';
+    const mamaIII = document.getElementById('grade3')?.value || '';
+    const tataI = document.getElementById('grade4')?.value || '';
+    const tataII = document.getElementById('grade5')?.value || '';
+    const tataIII = document.getElementById('grade6')?.value || '';
+    const baka = document.getElementById('grade7')?.value || '';
+
+    // Get R4, S4, T4 values - also transform decimals to commas
+    const r4 = (document.getElementById('total-average')?.textContent.replace('Prosjek: ', '').replace('—', '') || '').replace('.', ',');
+    const s4 = (document.getElementById('ratio')?.textContent.replace('Prosjek / Broj članova: ', '').replace('—', '') || '').replace('.', ',');
+    const t4 = document.getElementById('total-t4')?.textContent || '';
+
+    // Get additional criteria
+    const osnovna = document.getElementById('u4')?.value || '';
+    const srednja = document.getElementById('v4')?.value || '';
+    const fakultet = document.getElementById('w4')?.value || '';
+    const x4 = (document.getElementById('total-x4')?.textContent || '').replace('.', ',');
+
+    // Get category selections (porodične prilike) - put 1 for selected, 0 for not selected
+    const selectedCategory = document.querySelector('input[name="porodicne-prilike"]:checked');
+    const categoryValue = selectedCategory ? selectedCategory.value : 'none';
+
+    const bezObaRoditelja = categoryValue === 'y4' ? '1' : '0';
+    const bezJednogRoditelja = categoryValue === 'z4' ? '1' : '0';
+    const ratnihVojnihInvalida = categoryValue === 'aa4' ? '1' : '0';
+    const invalidiRada = categoryValue === 'ab4' ? '1' : '0';
+    const civilneZrtve = categoryValue === 'ac4' ? '1' : '0';
+    const rastavljenih = categoryValue === 'ad4' ? '1' : '0';
+    const bracnaZajednica = categoryValue === 'ae4' ? '1' : '0';
+    const studentRoditelj = categoryValue === 'af4' ? '1' : '0';
+
+    const ag4 = document.getElementById('total-ag4')?.textContent || '';
+
+    // Get year of study
+    const godinaStudija = document.getElementById('ah4')?.value || '';
+    const ai4 = document.getElementById('total-ai4')?.textContent || '';
+
+    // Get final categories (završne kategorije) - put 1 for selected, 0 for not selected
+    const selectedZavrsne = document.querySelector('input[name="zavrsne-kategorije"]:checked');
+    const zavrsneValue = selectedZavrsne ? selectedZavrsne.value : 'none';
+
+    const budzet = zavrsneValue === 'aj4' ? '1' : '0';
+    const sufinansira = zavrsneValue === 'ak4' ? '1' : '0';
+
+    const al4 = document.getElementById('total-al4')?.textContent || '';
+    const am4 = (document.getElementById('final-total')?.textContent || '').replace('.', ','); // Transform final total as well
+
+    // Get notes
+    const napomene = document.getElementById('napomena')?.value || '';
+
+    // Format the full name as "prezime (ime oca) i ime"
+    const fullName = `${prezime} (${imeOca}) ${ime}`;
+
+    // Create table row with TAB separators for Excel compatibility
+    const tableRow = [
+        brojPredmeta,                    // Broj predmeta
+        brojPredmeta,                    // Broj predmeta (duplicate)
+        fullName,                        // prezime (ime oca) i ime
+        nacionalnost,                    // nacionalnost (first letter only, uppercase)
+        brojTelefona,                    // broj telefona
+        nazivFakulteta,                  // Naziv fakulteta
+        prosjekOcjena,                   // prosjek ocjena (with comma)
+        gradePoints,                     // grade-points
+        brojClanova,                     // broj članova domaćinstva
+        mamaI,                           // mama i
+        mamaII,                          // mama ii
+        mamaIII,                         // mama iii
+        tataI,                           // tata i
+        tataII,                          // tata ii
+        tataIII,                         // tata iii
+        baka,                            // baka
+        r4,                              // R4 (with comma)
+        s4,                              // S4 (with comma)
+        t4,                              // T4
+        osnovna,                         // osnovna
+        srednja,                         // srednja
+        fakultet,                        // fakultet
+        x4,                              // X4 (with comma)
+        bezObaRoditelja,                 // bez oba roditelja
+        bezJednogRoditelja,              // bez jednog roditelja
+        ratnihVojnihInvalida,            // ratnih vojnih invalida
+        invalidiRada,                    // invalidi rada min 50%
+        civilneZrtve,                    // civilne žrtve i logoraši
+        rastavljenih,                    // rastavljenih ili razvedeni
+        bracnaZajednica,                 // student koji je u bračnoj zajednici
+        studentRoditelj,                 // student koji je roditelj
+        ag4,                             // AG4
+        godinaStudija,                   // godina studija
+        ai4,                             // AI4
+        budzet,                          // BUDŽET
+        sufinansira,                     // SUFINANSIRA
+        al4,                             // AL4
+        am4,                             // AM4 (with comma)
+        napomene                         // Napomene
+    ].join('\t');
+
+    // Display the result
+    document.getElementById('table-row-text').value = tableRow;
+    document.getElementById('table-row-output').style.display = 'block';
+
+    // Show success notification
+    showNotification('Kompletan red tabele je generiran za Excel!');
+}
+
+// Function to copy table row to clipboard
+function copyTableRow() {
+    const textArea = document.getElementById('table-row-text');
+    textArea.select();
+    textArea.setSelectionRange(0, 99999); // For mobile devices
+
+    try {
+        document.execCommand('copy');
+        showNotification('Red tabele je kopiran u clipboard!');
+    } catch (err) {
+        // Fallback for modern browsers
+        navigator.clipboard.writeText(textArea.value).then(() => {
+            showNotification('Red tabele je kopiran u clipboard!');
+        }).catch(() => {
+            showNotification('Greška pri kopiranju!');
+        });
+    }
 }
 
 // New handler for category radio buttons

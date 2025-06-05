@@ -240,7 +240,7 @@
                 </div>
 
                 <div class="section mb-4">
-                    <h2 class="mb-4">Dodatni Kriteriji</h2>
+                    <h2 class="mb-4">Broj ostale djece koja se školuju u porodici</h2>
                     <div class="row g-3">
                         <div class="col-md-4">
                             <label for="u4" class="form-label">Osnovna:</label>
@@ -417,6 +417,19 @@
                     </div>
                     <div class="final-total bg-white shadow-sm rounded-3 p-3 mb-3">
                         <strong>Ukupno Bodova: <span id="final-total">0</span></strong>
+                    </div>
+                    <!-- Add the generate table row button -->
+                    <div class="text-center mt-3">
+                        <button type="button" id="generate-table-row" class="btn btn-primary">
+                            Generiraj red tabele
+                        </button>
+                    </div>
+                    <div id="table-row-output" class="mt-3" style="display: none;">
+                        <label class="form-label">Kopiraj red tabele:</label>
+                        <textarea id="table-row-text" class="form-control" rows="3" readonly></textarea>
+                        <button type="button" id="copy-table-row" class="btn btn-sm btn-outline-secondary mt-2">
+                            Kopiraj u clipboard
+                        </button>
                     </div>
                 </div>
                 <!-- Napomena field at the bottom of the form -->
