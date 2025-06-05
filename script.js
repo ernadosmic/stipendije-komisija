@@ -661,21 +661,89 @@ function synchronizeRadioGroups(changedGroup, selectedValue) {
 // --- DOKUMENTI CHECK ---
 function updateNapomena() {
     const izjava = document.getElementById('doc-izjava').checked;
+    const rodjenBrcko = document.querySelector('input[name="rodjen-brcko"]:checked').value;
     const rodniList = document.getElementById('doc-rodni-list').checked;
+    const potvrdaUpis = document.getElementById('doc-potvrda-upis').checked;
+    const potvrdaIspiti = document.getElementById('doc-potvrda-ispiti').checked;
+    const izjavaDomacinstvo = document.getElementById('doc-izjava-domacinstvo').checked;
+    const potvrdaFinansiranje = document.getElementById('doc-potvrda-finansiranje').checked;
+
     let missing = [];
-    if (!izjava) missing.push('Izjava o neprimanju stipendija');
-    if (!rodniList) missing.push('Rodni list (ukoliko mjesto rođenja nije Brčko)');
+
+    missing.push('• Potvrda ili uvjerenje o mjestu prebivališta studenta i njegovih roditelja ili staratelja pribavlja se po službenoj dužnosti (Odluka, član V, stavka b)');
+
+    // If born in Brčko, add note about residence
+    if (rodjenBrcko === 'da') {
+        missing.push('• Izvod iz matične knjige rođenih se pribavlja po službenoj dužnosti');
+
+    }
+
+    // Only check rodni list if student is NOT born in Brčko AND checkbox is not checked
+    if (rodjenBrcko === 'ne' && !rodniList) {
+        missing.push('• KONTAKTIRATI: Nedostaje rodni list za studenta koji nije upisan u matičnu knjigu rođenih u Distriktu (Javni poziv, član V)');
+    }
+
+    if (!potvrdaUpis) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje o upisu godine studija');
+    if (!potvrdaIspiti) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje o položenim ispitima');
+    if (!izjavaDomacinstvo) missing.push('• KONTAKTIRATI: Izjava o zajedničkom domaćinstvu');
+    if (!izjava) missing.push('• KONTAKTIRATI: Izjava o neprimanju stipendija');
+    if (!potvrdaFinansiranje) missing.push('• KONTAKTIRATI: Original potvrdu ili uvjerenje da se studij finansira iz budžetskih sredstava ili sufinansira na javnoj viosokoškolskoj ustanovi');
+
     const napomena = document.getElementById('napomena');
     if (missing.length === 0) {
         napomena.value = '';
     } else {
-        napomena.value = 'Nedostaju dokumenti: ' + missing.join(', ');
+        napomena.value = 'Nedostaju dokumenti:\n' + missing.join('\n');
     }
+
+    // Auto-resize textarea to fit content
+    napomena.style.height = 'auto';
+    napomena.style.height = napomena.scrollHeight + 'px';
 }
 
-document.getElementById('doc-izjava').addEventListener('change', updateNapomena);
-document.getElementById('doc-rodni-list').addEventListener('change', updateNapomena);
-window.addEventListener('DOMContentLoaded', updateNapomena);
+// Function to handle showing/hiding rodni list checkbox
+function handleRodjenBrcko() {
+    const rodjenBrcko = document.querySelector('input[name="rodjen-brcko"]:checked').value;
+    const rodniListContainer = document.getElementById('rodni-list-container');
+
+    if (rodjenBrcko === 'ne') {
+        rodniListContainer.style.display = 'block';
+    } else {
+        rodniListContainer.style.display = 'none';
+        // Reset the checkbox when hiding
+        document.getElementById('doc-rodni-list').checked = false;
+    }
+
+    updateNapomena();
+}
+
+// Add event listeners for document checkboxes and radio buttons
+document.addEventListener('DOMContentLoaded', function () {
+    // Add radio button event listeners for "Rođen u Brčkom?"
+    document.getElementById('rodjen-brcko-da').addEventListener('change', handleRodjenBrcko);
+    document.getElementById('rodjen-brcko-ne').addEventListener('change', handleRodjenBrcko);
+
+    // Add document checkbox event listeners
+    const docCheckboxes = [
+        'doc-izjava',
+        'doc-rodni-list',
+        'doc-potvrda-upis',
+        'doc-potvrda-ispiti',
+        'doc-izjava-domacinstvo',
+        'doc-potvrda-finansiranje'
+    ];
+
+    docCheckboxes.forEach(id => {
+        const checkbox = document.getElementById(id);
+        if (checkbox) {
+            checkbox.addEventListener('change', updateNapomena);
+        }
+    });
+
+    // Initial calls
+    handleRodjenBrcko();
+    updateNapomena();
+});
 
 // Main calculation function
 function calculateAll() {
