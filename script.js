@@ -1068,6 +1068,7 @@ function highlightRequiredFields() {
         'nationality',
         'phone',
         'faculty',
+        'faculty-extra',
         'average-grade',
         // Socio-economic status
         'household-members',
