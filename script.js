@@ -53,6 +53,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial highlight check
     setTimeout(highlightRequiredFields, 100);
+
+    const facultySelect = document.getElementById('faculty');
+    const customFacultyToggle = document.getElementById('custom-faculty-toggle');
+    const customFaculty = document.getElementById('custom-faculty');
+    const facultyExtra = document.getElementById('faculty-extra');
+    const facultyCombined = document.getElementById('faculty-combined');
+
+    function updateFacultyCombined() {
+        let faculty = customFacultyToggle.checked ? customFaculty.value.trim() : facultySelect.value;
+        let extra = facultyExtra.value.trim();
+        facultyCombined.value = extra ? `${faculty} - ${extra}` : faculty;
+    }
+
+    customFacultyToggle.addEventListener('change', function () {
+        if (this.checked) {
+            facultySelect.style.display = 'none';
+            customFaculty.style.display = '';
+        } else {
+            facultySelect.style.display = '';
+            customFaculty.style.display = 'none';
+        }
+        updateFacultyCombined();
+    });
+
+    facultySelect.addEventListener('change', updateFacultyCombined);
+    customFaculty.addEventListener('input', updateFacultyCombined);
+    facultyExtra.addEventListener('input', updateFacultyCombined);
 });
 
 // Initialize radio button states on page load
@@ -153,7 +180,7 @@ function generateTableRow() {
     const nacionalnostFull = document.getElementById('nationality')?.value || '';
     const nacionalnost = nacionalnostFull.charAt(0).toUpperCase();
     const brojTelefona = document.getElementById('phone')?.value || '';
-    const nazivFakulteta = document.getElementById('faculty')?.value || '';
+    const nazivFakulteta = document.getElementById('faculty-combined')?.value || '';
     const prosjekOcjena = (document.getElementById('average-grade')?.value || '').replace('.', ',');
     const gradePoints = (document.getElementById('grade-points')?.textContent.replace('Bodovi: ', '') || '').replace('.', ','); // Convert . to ,
 

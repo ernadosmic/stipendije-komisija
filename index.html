@@ -79,7 +79,24 @@
                         </div>
                         <div class="col-12">
                             <label for="faculty" class="form-label">Naziv fakulteta:</label>
-                            <input type="text" id="faculty" class="form-control" placeholder="Unesite naziv fakulteta">
+                            <select id="faculty" class="form-select mb-2">
+                                <option value="">Odaberite univerzitet...</option>
+                                <option value="Univerzitet u Sarajevu">Univerzitet u Sarajevu</option>
+                                <option value="Univerzitet u Tuzli">Univerzitet u Tuzli</option>
+                                <option value="Univerzitet Beograd">Univerzitet Beograd</option>
+                                <option value="Univerzitet Istočno Sarajevo">Univerzitet Istočno Sarajevo</option>
+                                <option value="Univerzitet Banja Luka">Univerzitet Banja Luka</option>
+                            </select>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="custom-faculty-toggle">
+                                <label class="form-check-label" for="custom-faculty-toggle">Unesi vlastiti naziv</label>
+                            </div>
+                            <input type="text" id="custom-faculty" class="form-control mb-2"
+                                placeholder="Unesite naziv univerziteta" style="display:none;">
+                            <input type="text" id="faculty-extra" class="form-control mb-2"
+                                placeholder="Dodatak fakultetu (npr. smjer)">
+                            <input type="text" id="faculty-combined" class="form-control"
+                                placeholder="Kombinovani naziv fakulteta" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="average-grade" class="form-label">Prosjek ocjena:</label>
