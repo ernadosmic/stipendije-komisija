@@ -1273,39 +1273,26 @@ function setupRequiredFieldListeners() {
         requiredFieldIds.push('faculty');
     }
 
-    // Text inputs
-    const textInputs = document.querySelectorAll('input[type="text"], input[type="number"], select');
-    textInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            if (input.value && input.value.trim() !== '') {
-                input.classList.remove('required-field');
-            }
-        });
+    // Text/number/select inputs
+    requiredFieldIds.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', highlightRequiredFields);
+            input.addEventListener('change', highlightRequiredFields);
+        }
     });
 
     // Radio buttons
     const radioButtons = document.querySelectorAll('input[type="radio"]');
     radioButtons.forEach(radio => {
-        radio.addEventListener('change', () => {
-            const container = radio.closest('.required-radio-group');
-            if (container) {
-                container.classList.remove('required-radio-group');
-            }
-        });
+        radio.addEventListener('change', highlightRequiredFields);
     });
 
-    // Checkboxes
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                const label = checkbox.closest('.required-radio-group');
-                if (label) {
-                    label.classList.remove('required-radio-group');
-                }
-            }
-        });
-    });
+    // Checkboxes (if you want to highlight them, but usually not needed)
+    // const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    // checkboxes.forEach(checkbox => {
+    //     checkbox.addEventListener('change', highlightRequiredFields);
+    // });
 }
 
 // Add this function to handle custom faculty toggle
