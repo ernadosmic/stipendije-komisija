@@ -78,8 +78,9 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="phone" class="form-label">Broj telefona:</label>
-                            <input type="text" id="phone" class="form-control" placeholder="Unesite broj telefona">
+                            <label for="phone" class="form-label">Broj telefona ili email:</label>
+                            <input type="text" id="phone" class="form-control"
+                                placeholder="Unesite broj telefona ili email">
                         </div>
                         <div class="col-12">
                             <label for="faculty" class="form-label">Naziv fakulteta:</label>
@@ -87,9 +88,10 @@
                                 <option value="">Odaberite univerzitet...</option>
                                 <option value="Univerzitet u Sarajevu">Univerzitet u Sarajevu</option>
                                 <option value="Univerzitet u Tuzli">Univerzitet u Tuzli</option>
-                                <option value="Univerzitet Beograd">Univerzitet Beograd</option>
-                                <option value="Univerzitet Istočno Sarajevo">Univerzitet Istočno Sarajevo</option>
-                                <option value="Univerzitet Banja Luka">Univerzitet Banja Luka</option>
+                                <option value="Univerzitet u Beogradu">Univerzitet u Beogradu</option>
+                                <option value="Univerzitet u Istočnom Sarajevu">Univerzitet u Istočnom Sarajevu</option>
+                                <option value="Univerzitet u Banjoj Luci">Univerzitet u Banjoj Luci</option>
+                                <option value="Univerzitet u Novom Sadu">Univerzitet u Novom Sadu</option>
                             </select>
                             <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" id="custom-faculty-toggle">
@@ -111,6 +113,14 @@
                             <span class="result ms-2" id="grade-points">Bodovi: 0</span>
                         </div>
                     </div>
+                    <!-- Add hint explanation for grades -->
+                    <div class="alert alert-info mt-3" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <small><strong>Objašnjenje:</strong> Za prvi ciklus studija uzima se ukupni ostvareni prosječni
+                            uspjeh (Član 6.). Za drugi ciklus uzima se ostvareni prosječni uspjeh tokom prvog ciklusa
+                            studija (Član
+                            12.).</small>
+                    </div>
                 </div>
                 <div class="section mb-4">
                     <h2 class="mb-4">Socijalno ekonomski status (PRIMANJA ZA 3 MJESECA)</h2>
@@ -130,7 +140,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="mama1-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="mama1-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="mama1-radio" id="mama1-radio-0"
@@ -152,7 +162,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="mama2-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="mama2-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="mama2-radio" id="mama2-radio-0"
@@ -174,7 +184,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="mama3-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="mama3-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="mama3-radio" id="mama3-radio-0"
@@ -197,7 +207,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="tata1-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="tata1-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tata1-radio" id="tata1-radio-0"
@@ -219,7 +229,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="tata2-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="tata2-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tata2-radio" id="tata2-radio-0"
@@ -241,7 +251,7 @@
                             <div class="form-check mt-1">
                                 <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-platne"
                                     value="platne" checked>
-                                <label class="form-check-label" for="tata3-radio-platne">Platne liste</label>
+                                <label class="form-check-label" for="tata3-radio-platne">Platne liste / Penzija</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="tata3-radio" id="tata3-radio-0"
@@ -258,8 +268,15 @@
                         </div>
                         <div class="col-md-4">
                             <label for="grade7" class="form-label">Baka/Sestra/Brat:</label>
+
                             <input type="number" id="grade7" class="form-control" min="0" step="0.01"
                                 placeholder="Ostala primanja">
+                        </div>
+                        <!-- Add hint explanation -->
+                        <div class="alert alert-info mb-2" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <small><strong>Napomena:</strong> Zadnje tri platne liste. Za penzije potreban je
+                                posljednji ček penzije čiji se iznos upiše tri puta.</small>
                         </div>
                     </div>
                     <div class="calculation-results mt-3">
@@ -292,6 +309,7 @@
                 </div>
                 <div class="section mb-4">
                     <h2 class="mb-4">Porodične Prilike (upisuje se 1)</h2>
+
                     <div class="row g-2">
                         <div class="col-md-3 col-6">
                             <div class="form-check">
@@ -364,7 +382,16 @@
                         </div>
                     </div>
                     <div class="result mt-3" id="ag4-points">Bodovi: 0</div>
+                    <hr class="hr hr-blurry" />
+                    <!-- Add hint explanation -->
+                    <div class="alert alert-info mb-3" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <small><strong>Napomena:</strong> Jedan se odabira. Odabire se osnov povoljniji po prijavljenom
+                            studentu.</small>
+                    </div>
                 </div>
+
+
                 <div class="section mb-4">
                     <h2 class="mb-4">Dostignuto obrazovanje (godina studija)</h2>
                     <div class="row g-3 align-items-end">
@@ -384,9 +411,15 @@
                             <span class="result ms-2" id="ai4-points">AI4 Bodovi: 0</span>
                         </div>
                     </div>
+                    <!-- Add hint explanation -->
+                    <div class="alert alert-info mt-3" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <small><strong>Objašnjenje:</strong> Ukoliko se radi o prvom ciklusu studija, ne upisuje se 1. U
+                            drugom ciklusu upisuje se 1.</small>
+                    </div>
                 </div>
                 <div class="section mb-4">
-                    <h2 class="mb-4">Završne Kategorije</h2>
+                    <h2 class="mb-4">Model finansiranja</h2>
                     <div class="row g-2">
                         <div class="col-md-4">
                             <div class="form-check">
@@ -441,7 +474,7 @@
                             <span id="total-ai4">0</span>
                         </div>
                         <div class="breakdown-item">
-                            <span>Završni Bodovi:</span>
+                            <span>Bodovi finansiranja:</span>
                             <span id="total-al4">0</span>
                         </div>
                     </div>
