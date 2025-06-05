@@ -191,11 +191,11 @@ function generateTableRow() {
 
     // Define headers and data arrays - UPDATE to include JMBG instead of duplicate
     const headers = [
-        'Broj predmeta', 'JMBG', 'Puno ime', 'Nac.', 'Telefon', 'Fakultet', 'Prosjek', 'Bodovi',
-        'Br. članova', 'Mama I', 'Mama II', 'Mama III', 'Tata I', 'Tata II', 'Tata III', 'Baka/Sestra/Brat',
-        'R4', 'S4', 'T4', 'Osnovna', 'Srednja', 'Fakultet', 'X4', 'Bez oba', 'Bez jednog', 'Ratni inv.',
-        'Inv. rada', 'Civilne žrtve', 'Rastavljeni', 'Bračna zajednica', 'Student roditelj', 'AG4',
-        'Godina studija', 'AI4', 'BUDŽET', 'SUFINANSIRA', 'AL4', 'AM4', 'Napomene'
+        'Broj predmeta', 'JMBG', 'Puno ime', 'Nac.', 'Telefon', 'Fakultet', 'Prosjek', 'Bodovi od prosjeka',
+        'Br. članova porodice', 'Mama I', 'Mama II', 'Mama III', 'Tata I', 'Tata II', 'Tata III', 'Baka/Sestra/Brat',
+        'Prosjek', 'Prosjek / broj članova', 'Bodovi za ekonomski status', 'Osnovna', 'Srednja', 'Fakultet', 'Bodovi', 'Bez oba', 'Bez jednog', 'Ratni inv.',
+        'Inv. rada', 'Civilne žrtve', 'Rastavljeni', 'Bračna zajednica', 'Student roditelj', 'Bodovi',
+        'Godina studija', 'Bodovi', 'BUDŽET', 'SUFINANSIRA', 'Bodovi', 'Ukupno', 'Napomene'
     ];
 
     const dataValues = [
