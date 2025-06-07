@@ -323,6 +323,26 @@ header p {
   opacity: 1;
 }
 
+/* Mobile styling for carousel captions */
+.carousel-caption {
+  padding: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .carousel-caption h5 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .carousel-caption p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+}
+
 .checkbox-label,
 .form-check-label {
   display: flex;
