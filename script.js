@@ -13,6 +13,7 @@ let currentValues = {
         y4: false, z4: false, aa4: false, ab4: false,
         ac4: false, ad4: false, ae4: false, af4: false
     },
+    ciklusStudija: 'bachelor',
     ah4: 0,
     zavrsneKategorije: 'none' // Changed from aj4/ak4 to single field
 };
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     setupEventListeners();
+    handleCiklusStudija();
 
     // Initialize radio button states
     initializeRadioButtonStates();
@@ -102,6 +104,8 @@ function initializeRadioButtonStates() {
             handleRadioButtonChange(group, field);
         }
     });
+
+    handleCiklusStudija();
 }
 
 function setupEventListeners() {
@@ -141,6 +145,11 @@ function setupEventListeners() {
     categoryRadios.forEach(radio => {
         radio.addEventListener('change', handleCategoriesRadio);
     });
+
+    // Study cycle
+    document.getElementById('ciklus-bachelor').addEventListener('change', handleCiklusStudija);
+    document.getElementById('ciklus-master').addEventListener('change', handleCiklusStudija);
+    updateGodinaStudijaOptions();
 
     // Rating
     document.getElementById('ah4').addEventListener('change', handleRating);
@@ -426,6 +435,10 @@ function calculateAG4(categories) {
 
 // AI4 Function: Rating points
 function calculateAI4(ah4) {
+    if (currentValues.ciklusStudija === 'master') {
+        return 0;
+    }
+
     const rating = parseInt(ah4);
 
     if (rating === 1) return 0;
@@ -548,8 +561,41 @@ function handleCategories() {
     calculateAll();
 }
 
+function updateGodinaStudijaOptions() {
+    const select = document.getElementById('ah4');
+    if (!select) return;
+
+    const options = select.querySelectorAll('option');
+    if (currentValues.ciklusStudija === 'bachelor') {
+        if (options.length >= 7) {
+            options[1].textContent = '1 - Prva godina bachelora nema pravo';
+            options[2].textContent = '2 - 5 bodova';
+            options[3].textContent = '3 - 10 bodova';
+            options[4].textContent = '4 - 15 bodova';
+            options[5].textContent = '5 - 20 bodova';
+            options[6].textContent = '6 - 25 bodova';
+        }
+    } else {
+        for (let i = 1; i <= 6; i++) {
+            if (options[i]) options[i].textContent = `${i} - 0 bodova`;
+        }
+    }
+}
+
+function handleCiklusStudija() {
+    const selected = document.querySelector('input[name="ciklus-studija"]:checked');
+    currentValues.ciklusStudija = selected ? selected.value : 'bachelor';
+    updateGodinaStudijaOptions();
+    document.getElementById('ah4').value = '';
+    currentValues.ah4 = 0;
+    calculateAll();
+}
+
 function handleRating() {
     currentValues.ah4 = parseInt(this.value) || 0;
+    if (currentValues.ciklusStudija === 'bachelor' && currentValues.ah4 === 1) {
+        showNotification('Student prve godine bachelora nema pravo na stipendiju');
+    }
     calculateAll();
 }
 
