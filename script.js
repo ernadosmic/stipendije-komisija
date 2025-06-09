@@ -435,6 +435,10 @@ function calculateAG4(categories) {
 
 // AI4 Function: Rating points
 function calculateAI4(ah4) {
+    if (currentValues.ciklusStudija === 'bachelor' && parseInt(ah4) === 1) {
+        return "Greška";
+    }
+
     if (currentValues.ciklusStudija === 'master') {
         return 0;
     }
@@ -594,7 +598,22 @@ function handleCiklusStudija() {
 function handleRating() {
     currentValues.ah4 = parseInt(this.value) || 0;
     if (currentValues.ciklusStudija === 'bachelor' && currentValues.ah4 === 1) {
-        showNotification('Student prve godine bachelora nema pravo na stipendiju');
+        // Create a red notification
+        let toast = document.getElementById('copilot-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'copilot-toast';
+            toast.className = 'toast align-items-center text-bg-danger border-0 position-fixed top-0 start-50 translate-middle-x mt-4';
+            toast.style.zIndex = 9999;
+            toast.style.minWidth = '220px';
+            toast.innerHTML = `<div class="d-flex"><div class="toast-body">Student prve godine bachelora nema pravo na stipendiju</div></div>`;
+            document.body.appendChild(toast);
+        } else {
+            toast.querySelector('.toast-body').textContent = 'Student prve godine bachelora nema pravo na stipendiju';
+            toast.className = 'toast align-items-center text-bg-danger border-0 position-fixed top-0 start-50 translate-middle-x mt-4';
+        }
+        const bsToast = bootstrap.Toast.getOrCreateInstance(toast, { delay: 4200 });
+        bsToast.show();
     }
     calculateAll();
 }
@@ -813,9 +832,17 @@ function calculateAll() {
 
     // Calculate AI4 (Rating points)
     const ai4 = calculateAI4(currentValues.ah4);
-    const ai4Display = ai4 === "Greška" ? ai4 : ai4.toString();
-    document.getElementById('ai4-points').textContent = `Bodovi: ${ai4Display}`;
-    document.getElementById('total-ai4').textContent = ai4Display;
+    if (ai4 === "Greška") {
+        document.getElementById('ai4-points').textContent = "Greška";
+        document.getElementById('ai4-points').style.color = "red";
+        document.getElementById('ai4-points').style.fontWeight = "bold";
+        document.getElementById('total-ai4').textContent = "0";
+    } else {
+        document.getElementById('ai4-points').textContent = `Bodovi: ${ai4}`;
+        document.getElementById('ai4-points').style.color = "";
+        document.getElementById('ai4-points').style.fontWeight = "";
+        document.getElementById('total-ai4').textContent = ai4.toString();
+    }
 
     // Calculate AL4 (Final category points) - Updated to use new structure
     const al4 = calculateAL4(currentValues.zavrsneKategorije);

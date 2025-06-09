@@ -44,28 +44,30 @@
 
 
                 <div class="section mb-4">
-                    <h2 class="mb-4">Dokumenti</h2>
-                        <div class="row g-2">
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Ciklus studija:</strong></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ciklus-studija" id="ciklus-bachelor" value="bachelor" checked>
-                                    <label class="form-check-label" for="ciklus-bachelor">
-                                        Bachelor
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ciklus-studija" id="ciklus-master" value="master">
-                                    <label class="form-check-label" for="ciklus-master">
-                                        Master
-                                    </label>
-                                </div>
+                    <h2 class="mb-4">Osnovi podaci</h2>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Ciklus studija:</strong></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ciklus-studija" id="ciklus-bachelor"
+                                    value="bachelor" checked>
+                                <label class="form-check-label" for="ciklus-bachelor">
+                                    Bachelor
+                                </label>
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label"><strong>Student je rođen u Brčkom?</strong></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="rodjen-brcko" id="rodjen-brcko-da"
-                                        value="da" checked>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ciklus-studija" id="ciklus-master"
+                                    value="master">
+                                <label class="form-check-label" for="ciklus-master">
+                                    Master
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label"><strong>Student je rođen u Brčkom?</strong></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rodjen-brcko" id="rodjen-brcko-da"
+                                    value="da" checked>
                                 <label class="form-check-label" for="rodjen-brcko-da">
                                     Da
                                 </label>
@@ -233,6 +235,15 @@
                             <label for="household-members" class="form-label">Broj članova domaćinstva:</label>
                             <input type="number" id="household-members" class="form-control" min="1" step="1"
                                 placeholder="Unesite broj članova">
+                        </div>
+                        <div class="alert alert-info mb-2" role="alert">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <small><strong>Napomena:</strong> Ukoliko su roditelji <strong>navedeni na kućnoj
+                                    listi</strong>, a nedostaje
+                                u dokumentaciji platna lista i/ili dokaz o nezaposlenosti, Preporučena je praksa
+                                telefonski
+                                obavijestiti kandidata da iste dostavi u roku od sedam dana. Isto važi i za braću ili
+                                sestre na kućnoj listi i dokaze o njihovom školovanju.</small>
                         </div>
                     </div>
                     <hr class="hr hr-blurry" />
