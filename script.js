@@ -319,8 +319,43 @@ function downloadExcelFile(headers, dataValues, studentName) {
         const cleanName = studentName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
         const filename = `stipendija_${cleanName}_${timestamp}.xlsx`;
 
-        // Create worksheet data
-        const wsData = [headers, dataValues];
+        // Create worksheet data - first row is headers
+        const wsData = [headers];
+
+        // Create a copy of dataValues where we'll convert appropriate values to numbers
+        const processedData = [...dataValues];
+
+        // Define numeric column indices (0-based)
+        const numericColumns = [
+            6,  // Prosjek
+            7,  // Bodovi od prosjeka
+            8,  // Br. članova porodice
+            9, 10, 11, 12, 13, 14, 15,  // Mama I, II, III, Tata I, II, III, Baka
+            16, 17, 18,  // Prosjek, Prosjek/broj članova, Bodovi za ekonomski status
+            19, 20, 21, 22,  // Osnovna, Srednja, Fakultet, Bodovi
+            31,  // Bodovi (from ag4)
+            32,  // Godina studija
+            33,  // Bodovi (from ai4)
+            36,  // Bodovi (from al4)
+            37   // Ukupno
+        ];
+
+        // Convert string values to numbers for numeric columns
+        numericColumns.forEach(colIndex => {
+            if (processedData[colIndex] && processedData[colIndex] !== '') {
+                // Replace comma with dot for European number format
+                let value = processedData[colIndex].toString().replace(',', '.');
+
+                // Convert to number if it's a valid number
+                const numValue = parseFloat(value);
+                if (!isNaN(numValue)) {
+                    processedData[colIndex] = numValue;
+                }
+            }
+        });
+
+        // Add processed data row to worksheet
+        wsData.push(processedData);
 
         // Create workbook and worksheet
         const wb = XLSX.utils.book_new();
