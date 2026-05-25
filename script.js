@@ -18,6 +18,169 @@ let currentValues = {
     zavrsneKategorije: 'none' // Changed from aj4/ak4 to single field
 };
 
+const FACULTIES_BY_UNIVERSITY = {
+    'Univerzitet u Sarajevu': [
+        'Akademija likovnih umjetnosti',
+        'Akademija scenskih umjetnosti',
+        'Arhitektonski fakultet',
+        'Ekonomski fakultet',
+        'Elektrotehnički fakultet',
+        'Fakultet islamskih nauka',
+        'Fakultet za kriminalistiku, kriminologiju i sigurnosne studije',
+        'Fakultet za saobraćaj i komunikacije',
+        'Fakultet za upravu',
+        'Fakultet zdravstvenih studija',
+        'Fakultet političkih nauka',
+        'Fakultet sporta i tjelesnog odgoja',
+        'Farmaceutski fakultet',
+        'Filozofski fakultet',
+        'Građevinski fakultet',
+        'Katolički bogoslovni fakultet',
+        'Mašinski fakultet',
+        'Medicinski fakultet',
+        'Muzička akademija',
+        'Pedagoški fakultet',
+        'Poljoprivredno-prehrambeni fakultet',
+        'Pravni fakultet',
+        'Prirodno-matematički fakultet',
+        'Stomatološki fakultet',
+        'Šumarski fakultet',
+        'Veterinarski fakultet'
+    ],
+    'Univerzitet u Tuzli': [
+        'Akademija dramskih umjetnosti',
+        'Ekonomski fakultet',
+        'Fakultet elektrotehnike',
+        'Fakultet fizičkog odgoja i sporta',
+        'Fakultet za specijalnu edukaciju i rehabilitaciju',
+        'Farmaceutski fakultet',
+        'Filozofski fakultet',
+        'Mašinski fakultet',
+        'Medicinski fakultet',
+        'Pravni fakultet',
+        'Prirodno-matematički fakultet',
+        'Rudarsko-geološko-građevinski fakultet',
+        'Tehnološki fakultet'
+    ],
+    'Univerzitet u Beogradu': [
+        'Arhitektonski fakultet',
+        'Biološki fakultet',
+        'Ekonomski fakultet',
+        'Elektrotehnički fakultet',
+        'Fakultet bezbednosti',
+        'Fakultet organizacionih nauka',
+        'Fakultet političkih nauka',
+        'Fakultet sporta i fizičkog vaspitanja',
+        'Fakultet veterinarske medicine',
+        'Fakultet za fizičku hemiju',
+        'Fakultet za specijalnu edukaciju i rehabilitaciju',
+        'Farmaceutski fakultet',
+        'Filološki fakultet',
+        'Filozofski fakultet',
+        'Fizički fakultet',
+        'Geografski fakultet',
+        'Građevinski fakultet',
+        'Hemijski fakultet',
+        'Mašinski fakultet',
+        'Matematički fakultet',
+        'Medicinski fakultet',
+        'Poljoprivredni fakultet',
+        'Pravni fakultet',
+        'Pravoslavni bogoslovski fakultet',
+        'Rudarsko-geološki fakultet',
+        'Saobraćajni fakultet',
+        'Stomatološki fakultet',
+        'Šumarski fakultet',
+        'Tehnički fakultet u Boru',
+        'Tehnološko-metalurški fakultet',
+        'Učiteljski fakultet'
+    ],
+    'Univerzitet u Istočnom Sarajevu': [
+        'Akademija likovnih umjetnosti',
+        'Akademija muzike',
+        'Ekonomski fakultet Pale',
+        'Ekonomski fakultet Brčko',
+        'Fakultet elektrotehničkog inženjerstva',
+        'Fakultet fizičkog vaspitanja i sporta',
+        'Fakultet mašinskog inženjerstva',
+        'Fakultet poslovne ekonomije',
+        'Fakultet pravoslavne teologije',
+        'Fakultet proizvodnje i menadžmenta Trebinje',
+        'Fakultet saobraćaja i transporta',
+        'Filozofski fakultet',
+        'Medicinski fakultet',
+        'Pedagoški fakultet',
+        'Poljoprivredni fakultet',
+        'Pravni fakultet',
+        'Tehnološki fakultet'
+    ],
+    'Univerzitet u Banjoj Luci': [
+        'Akademija umetnosti',
+        'Arhitektonsko-građevinsko-geodetski fakultet',
+        'Ekonomski fakultet',
+        'Elektrotehnički fakultet',
+        'Fakultet bezbjednosnih nauka',
+        'Fakultet fizičkog vaspitanja i sporta',
+        'Fakultet političkih nauka',
+        'Filološki fakultet',
+        'Filozofski fakultet',
+        'Mašinski fakultet',
+        'Medicinski fakultet',
+        'Poljoprivredni fakultet',
+        'Pravni fakultet',
+        'Prirodno-matematički fakultet',
+        'Rudarsko-geološki fakultet',
+        'Šumarski fakultet',
+        'Tehnološki fakultet'
+    ],
+    'Univerzitet u Novom Sadu': [
+        'Akademija umetnosti',
+        'Ekonomski fakultet Subotica',
+        'Fakultet sporta i fizičkog vaspitanja',
+        'Fakultet tehničkih nauka',
+        'Filozofski fakultet',
+        'Građevinski fakultet Subotica',
+        'Medicinski fakultet',
+        'Pedagoški fakultet Sombor',
+        'Poljoprivredni fakultet',
+        'Pravni fakultet',
+        'Prirodno-matematički fakultet',
+        'Tehnički fakultet Mihajlo Pupin Zrenjanin',
+        'Tehnološki fakultet',
+        'Učiteljski fakultet na mađarskom nastavnom jeziku'
+    ],
+    'Sveučilište u Mostaru': [
+        'Agronomski fakultet',
+        'Akademija likovnih umjetnosti',
+        'Ekonomski fakultet',
+        'Fakultet prirodoslovno-matematičkih i odgojnih znanosti',
+        'Fakultet strojarstva i računarstva',
+        'Fakultet zdravstvenih studija',
+        'Farmaceutski fakultet',
+        'Filozofski fakultet',
+        'Građevinski fakultet',
+        'Medicinski fakultet',
+        'Pravni fakultet'
+    ],
+    'Evropski univerzitet Brčko': [
+        'Ekonomski fakultet',
+        'Fakultet zdravstvenih nauka',
+        'Fakultet političkih nauka',
+        'Pedagoški fakultet',
+        'Pravni fakultet',
+        'Tehnički fakultet'
+    ],
+    'Internacionalni univerzitet Brčko': [
+        'Fakultet za informatiku',
+        'Fakultet za menadžment',
+        'Fakultet za poslovne komunikacije',
+        'Fakultet za poslovnu i građansku bezbjednost',
+        'Pedagoški fakultet',
+        'Pravni fakultet',
+        'Saobraćajni fakultet'
+    ]
+};
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function () {
     // Store original placeholders for income fields
@@ -60,21 +223,70 @@ document.addEventListener('DOMContentLoaded', function () {
     const customFacultyToggle = document.getElementById('custom-faculty-toggle');
     const customFaculty = document.getElementById('custom-faculty');
     const facultyExtra = document.getElementById('faculty-extra');
+    const customFacultyExtraToggle = document.getElementById('custom-faculty-extra-toggle');
+    const customFacultyExtra = document.getElementById('custom-faculty-extra');
     const facultyCombined = document.getElementById('faculty-combined');
+
+    function getFacultyExtraValue() {
+        return customFacultyExtraToggle.checked ? customFacultyExtra.value.trim() : facultyExtra.value.trim();
+    }
+
+    function updateFacultyOptionsByUniversity() {
+        const previousValue = facultyExtra.value;
+        facultyExtra.innerHTML = '';
+
+        const placeholderOption = document.createElement('option');
+        placeholderOption.value = '';
+        placeholderOption.textContent = 'Odaberite fakultet...';
+        facultyExtra.appendChild(placeholderOption);
+
+        if (customFacultyToggle.checked) {
+            return;
+        }
+
+        const selectedUniversity = facultySelect.value;
+        const faculties = FACULTIES_BY_UNIVERSITY[selectedUniversity] || [];
+
+        faculties.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            facultyExtra.appendChild(option);
+        });
+
+        if (faculties.includes(previousValue)) {
+            facultyExtra.value = previousValue;
+        }
+    }
 
     function updateFacultyCombined() {
         let faculty = customFacultyToggle.checked ? customFaculty.value.trim() : facultySelect.value;
-        let extra = facultyExtra.value.trim();
+        let extra = getFacultyExtraValue();
         facultyCombined.value = extra ? `${faculty} - ${extra}` : faculty;
+    }
+
+    function updateFacultyExtraMode() {
+        if (customFacultyExtraToggle.checked) {
+            facultyExtra.style.display = 'none';
+            customFacultyExtra.style.display = '';
+        } else {
+            facultyExtra.style.display = '';
+            customFacultyExtra.style.display = 'none';
+        }
+
+        updateFacultyCombined();
+        highlightRequiredFields();
     }
 
     customFacultyToggle.addEventListener('change', function () {
         if (this.checked) {
             facultySelect.style.display = 'none';
             customFaculty.style.display = '';
+            updateFacultyOptionsByUniversity();
         } else {
             facultySelect.style.display = '';
             customFaculty.style.display = 'none';
+            updateFacultyOptionsByUniversity();
         }
         updateFacultyCombined();
 
@@ -82,9 +294,17 @@ document.addEventListener('DOMContentLoaded', function () {
         highlightRequiredFields();
     });
 
-    facultySelect.addEventListener('change', updateFacultyCombined);
+    facultySelect.addEventListener('change', function () {
+        updateFacultyOptionsByUniversity();
+        updateFacultyCombined();
+    });
     customFaculty.addEventListener('input', updateFacultyCombined);
-    facultyExtra.addEventListener('input', updateFacultyCombined);
+    facultyExtra.addEventListener('change', updateFacultyCombined);
+    customFacultyExtra.addEventListener('input', updateFacultyCombined);
+    customFacultyExtraToggle.addEventListener('change', updateFacultyExtraMode);
+
+    updateFacultyOptionsByUniversity();
+    updateFacultyExtraMode();
 });
 
 // Initialize radio button states on page load
@@ -1013,6 +1233,17 @@ function clearForm() {
         select.selectedIndex = 0;
     });
 
+    const customUniversityToggle = document.getElementById('custom-faculty-toggle');
+    const customFacultyNameToggle = document.getElementById('custom-faculty-extra-toggle');
+    if (customUniversityToggle) {
+        customUniversityToggle.checked = false;
+        customUniversityToggle.dispatchEvent(new Event('change'));
+    }
+    if (customFacultyNameToggle) {
+        customFacultyNameToggle.checked = false;
+        customFacultyNameToggle.dispatchEvent(new Event('change'));
+    }
+
     // Hide table output
     const tableOutput = document.getElementById('table-row-output');
     if (tableOutput) {
@@ -1051,13 +1282,7 @@ function populateRandomData() {
     const lastNames = ['Marić', 'Petrović', 'Nikolić', 'Mehić', 'Jovanović', 'Đorđević', 'Ibrahimović', 'Popović'];
     const fatherNames = ['Petar', 'Mehmedalija', 'Stefan', 'Ismar', 'Miloš', 'Aleksandar', 'Dragan', 'Zoran'];
     const nationalities = ['Bošnjak', 'Srbin', 'Hrvat', 'Ostali'];
-    const faculties = [
-        'Fakultet elektrotehnike',
-        'Medicinski fakultet',
-        'Ekonomski fakultet',
-        'Pravni fakultet',
-        'Fakultet za menadžment'
-    ];
+    const universities = Object.keys(FACULTIES_BY_UNIVERSITY);
 
     // 1. DOKUMENTI (PRILOŽENI) - Random checkboxes
     document.getElementById('doc-izjava').checked = Math.random() > 0.3;
@@ -1078,7 +1303,21 @@ function populateRandomData() {
     document.getElementById('name').value = firstNames[Math.floor(Math.random() * firstNames.length)];
     document.getElementById('nationality').value = nationalities[Math.floor(Math.random() * nationalities.length)];
     document.getElementById('phone').value = '065' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-    document.getElementById('faculty').value = faculties[Math.floor(Math.random() * faculties.length)];
+
+    const randomUniversity = universities[Math.floor(Math.random() * universities.length)];
+    const universityFaculties = FACULTIES_BY_UNIVERSITY[randomUniversity] || [];
+    const randomFaculty = universityFaculties[Math.floor(Math.random() * universityFaculties.length)] || '';
+
+    const customUniversityToggle = document.getElementById('custom-faculty-toggle');
+    const customFacultyNameToggle = document.getElementById('custom-faculty-extra-toggle');
+    customUniversityToggle.checked = false;
+    customUniversityToggle.dispatchEvent(new Event('change'));
+    customFacultyNameToggle.checked = false;
+    customFacultyNameToggle.dispatchEvent(new Event('change'));
+
+    document.getElementById('faculty').value = randomUniversity;
+    document.getElementById('faculty').dispatchEvent(new Event('change'));
+    document.getElementById('faculty-extra').value = randomFaculty;
 
     // Random average grade between 6.0 and 10.0
     const avgGrade = (Math.random() * 4 + 6).toFixed(2);
@@ -1246,7 +1485,6 @@ function highlightRequiredFields() {
         'name',
         'nationality',
         'phone',
-        'faculty-extra',  // Always check faculty-extra
         'average-grade',
         // Socio-economic status
         'household-members',
@@ -1261,10 +1499,17 @@ function highlightRequiredFields() {
 
     // Add appropriate faculty field based on toggle
     const customToggle = document.getElementById('custom-faculty-toggle');
+    const customFacultyExtraToggle = document.getElementById('custom-faculty-extra-toggle');
     if (customToggle.checked) {
         requiredFields.push('custom-faculty');
     } else {
         requiredFields.push('faculty');
+    }
+
+    if (customFacultyExtraToggle.checked) {
+        requiredFields.push('custom-faculty-extra');
+    } else {
+        requiredFields.push('faculty-extra');
     }
 
     // Check text/number inputs
@@ -1315,6 +1560,7 @@ function clearRequiredFieldHighlighting() {
 // Update checkRequiredFields function
 function checkRequiredFields() {
     const customToggle = document.getElementById('custom-faculty-toggle');
+    const customFacultyExtraToggle = document.getElementById('custom-faculty-extra-toggle');
     const requiredFields = [
         // Basic information
         { id: 'subject-number', name: 'Broj predmeta' },
@@ -1339,9 +1585,7 @@ function checkRequiredFields() {
         { id: 'v4', name: 'Srednja škola' },
         { id: 'w4', name: 'Fakultet' },
         // Year of study
-        { id: 'ah4', name: 'Godina studija' },
-        // Faculty-extra is always required
-        { id: 'faculty-extra', name: 'Fakultet' }
+        { id: 'ah4', name: 'Godina studija' }
     ];
 
     // Add faculty field conditionally
@@ -1349,6 +1593,12 @@ function checkRequiredFields() {
         requiredFields.push({ id: 'custom-faculty', name: 'Naziv univerziteta' });
     } else {
         requiredFields.push({ id: 'faculty', name: 'Naziv univerziteta' });
+    }
+
+    if (customFacultyExtraToggle.checked) {
+        requiredFields.push({ id: 'custom-faculty-extra', name: 'Fakultet' });
+    } else {
+        requiredFields.push({ id: 'faculty-extra', name: 'Fakultet' });
     }
 
     // Check text/number inputs
@@ -1380,19 +1630,21 @@ function checkRequiredFields() {
 // Update setupRequiredFieldListeners function
 function setupRequiredFieldListeners() {
     const customToggle = document.getElementById('custom-faculty-toggle');
+    const customFacultyExtraToggle = document.getElementById('custom-faculty-extra-toggle');
     const baseRequiredFieldIds = [
         'subject-number', 'jmbg', 'surname', 'father-name', 'name',
         'nationality', 'phone', 'average-grade',
         'household-members', 'grade1', 'grade2', 'grade3',
         'grade4', 'grade5', 'grade6', 'grade7',
-        'u4', 'v4', 'w4', 'ah4',
-        'faculty-extra'  // Always monitor faculty-extra
+        'u4', 'v4', 'w4', 'ah4'
     ];
 
     // Add faculty fields conditionally
     const requiredFieldIds = [...baseRequiredFieldIds];
     requiredFieldIds.push('custom-faculty');
     requiredFieldIds.push('faculty');
+    requiredFieldIds.push('faculty-extra');
+    requiredFieldIds.push('custom-faculty-extra');
 
     // Text/number/select inputs
     requiredFieldIds.forEach(id => {
@@ -1413,41 +1665,7 @@ function setupRequiredFieldListeners() {
     if (customToggle) {
         customToggle.addEventListener('change', highlightRequiredFields);
     }
-}
-
-// Add this function to handle custom faculty toggle
-function handleCustomFacultyToggle() {
-    const customToggle = document.getElementById('custom-faculty-toggle');
-    const facultyDropdown = document.getElementById('faculty');
-    const customFacultyInput = document.getElementById('custom-faculty');
-
-    if (customToggle.checked) {
-        // Show custom input, hide dropdown
-        facultyDropdown.style.display = 'none';
-        customFacultyInput.style.display = 'block';
-        facultyDropdown.classList.remove('required-field');
-    } else {
-        // Show dropdown, hide custom input
-        facultyDropdown.style.display = 'block';
-        customFacultyInput.style.display = 'none';
-        customFacultyInput.classList.remove('required-field');
-        customFacultyInput.value = '';
+    if (customFacultyExtraToggle) {
+        customFacultyExtraToggle.addEventListener('change', highlightRequiredFields);
     }
-
-    updateFacultyCombined();
-
-    // Recheck validation highlighting
-    highlightRequiredFields();
 }
-
-// Add event listener in DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function () {
-    // ... existing code ...
-
-    const customFacultyToggle = document.getElementById('custom-faculty-toggle');
-    if (customFacultyToggle) {
-        customFacultyToggle.addEventListener('change', handleCustomFacultyToggle);
-    }
-
-    // ... rest of existing code ...
-});
