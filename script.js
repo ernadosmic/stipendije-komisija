@@ -945,13 +945,6 @@ function handleRadioButtonChange(radioGroup, fieldId) {
             inputField.placeholder = 'Polje zaključano - nedostaju dokumenti';
             break;
 
-        case 'nije-na-listi':
-            // Lock field and set to 0 — person not on household list
-            inputField.disabled = true;
-            inputField.value = '0';
-            inputField.style.backgroundColor = '#f8f9fa';
-            inputField.placeholder = 'Automatski postavljeno na 0';
-            break;
     }
 
     // Trigger recalculation
@@ -1011,12 +1004,6 @@ function synchronizeRadioGroups(changedGroup, selectedValue) {
                             inputField.value = '';
                             inputField.style.backgroundColor = '#f8f9fa';
                             inputField.placeholder = 'Polje zaključano - nedostaju dokumenti';
-                            break;
-                        case 'nije-na-listi':
-                            inputField.disabled = true;
-                            inputField.value = '0';
-                            inputField.style.backgroundColor = '#f8f9fa';
-                            inputField.placeholder = 'Automatski postavljeno na 0';
                             break;
                     }
                 }
@@ -1392,7 +1379,7 @@ function populateRandomData() {
         const element = document.getElementById(field.id);
 
         // Random radio button selection
-        const radioOptions = ['platne', '0', 'blank', 'nije-na-listi'];
+        const radioOptions = ['platne', '0', 'blank'];
         const randomRadio = radioOptions[Math.floor(Math.random() * radioOptions.length)];
         const radioElement = document.querySelector(`input[name="${field.radio}"][value="${randomRadio}"]`);
         if (radioElement) radioElement.checked = true;
@@ -1402,7 +1389,7 @@ function populateRandomData() {
             element.disabled = false;
             element.style.backgroundColor = '';
             element.value = Math.floor(Math.random() * 1000);
-        } else if (randomRadio === '0' || randomRadio === 'nije-na-listi') {
+        } else if (randomRadio === '0') {
             element.disabled = true;
             element.value = '0';
             element.style.backgroundColor = '#f8f9fa';
