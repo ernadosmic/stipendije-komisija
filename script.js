@@ -1012,6 +1012,12 @@ function synchronizeRadioGroups(changedGroup, selectedValue) {
                             inputField.style.backgroundColor = '#f8f9fa';
                             inputField.placeholder = 'Polje zaključano - nedostaju dokumenti';
                             break;
+                        case 'nije-na-listi':
+                            inputField.disabled = true;
+                            inputField.value = '0';
+                            inputField.style.backgroundColor = '#f8f9fa';
+                            inputField.placeholder = 'Automatski postavljeno na 0';
+                            break;
                     }
                 }
             }
