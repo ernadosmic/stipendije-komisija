@@ -331,6 +331,7 @@ function initializeRadioButtonStates() {
 function setupEventListeners() {
     // Basic information
     document.getElementById('average-grade').addEventListener('input', handleAverageGrade);
+    document.getElementById('grade-scale-convert').addEventListener('change', handleGradeScaleConvert);
 
     // Socio-economic status inputs
     document.getElementById('household-members').addEventListener('input', handleSocioEconomic);
@@ -774,8 +775,37 @@ function calculateT4(s4) {
 
 // Event handlers
 function handleAverageGrade() {
-    currentValues.averageGrade = parseFloat(this.value) || 0;
+    const raw = parseFloat(document.getElementById('average-grade').value) || 0;
+    const converting = document.getElementById('grade-scale-convert')?.checked;
+    const display = document.getElementById('converted-grade-display');
+    const valueEl = document.getElementById('converted-grade-value');
+    if (converting && raw) {
+        const converted = Math.round((10 - ((raw - 1) * 5 / 4)) * 100) / 100;
+        currentValues.averageGrade = converted;
+        display.classList.remove('d-none');
+        valueEl.textContent = converted.toFixed(2);
+    } else {
+        currentValues.averageGrade = raw;
+        display.classList.add('d-none');
+    }
     calculateAll();
+}
+
+function handleGradeScaleConvert() {
+    const checkbox = document.getElementById('grade-scale-convert');
+    const input = document.getElementById('average-grade');
+    const display = document.getElementById('converted-grade-display');
+    if (checkbox.checked) {
+        input.min = 1;
+        input.max = 5;
+        input.placeholder = 'Unesite prosjek (1–5)';
+    } else {
+        input.min = 1;
+        input.max = 10;
+        input.placeholder = 'Unesite prosjek ocjena';
+        display.classList.add('d-none');
+    }
+    handleAverageGrade();
 }
 
 function handleAdditionalCriteria() {

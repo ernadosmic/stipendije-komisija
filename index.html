@@ -227,6 +227,15 @@
                             <label for="average-grade" class="form-label">Prosjek ocjena:</label>
                             <input type="number" id="average-grade" class="form-control" step="0.01" min="1" max="10"
                                 placeholder="Unesite prosjek ocjena">
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="grade-scale-convert">
+                                <label class="form-check-label small" for="grade-scale-convert">
+                                    Ocjene po skali 1–5 (5 = najlošije) — konvertuj u bosansku skalu
+                                </label>
+                            </div>
+                            <div id="converted-grade-display" class="mt-1 d-none">
+                                <small class="text-muted">Konvertovani prosjek: <strong id="converted-grade-value">—</strong></small>
+                            </div>
                         </div>
                         <div class="col-md-6 d-flex align-items-end">
                             <span class="result ms-2" id="grade-points">Bodovi: 0</span>
