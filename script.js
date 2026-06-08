@@ -367,6 +367,16 @@ function setupEventListeners() {
         radio.addEventListener('change', handleCategoriesRadio);
     });
 
+    // Prevent scroll wheel on all number inputs and block negative values
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('wheel', e => e.preventDefault(), { passive: false });
+        input.addEventListener('keydown', e => { if (e.key === '-' || e.key === 'e') e.preventDefault(); });
+        input.addEventListener('input', () => {
+            const min = parseFloat(input.min);
+            if (!isNaN(min) && parseFloat(input.value) < min) input.value = min;
+        });
+    });
+
     // Study cycle
     document.getElementById('ciklus-bachelor').addEventListener('change', handleCiklusStudija);
     document.getElementById('ciklus-master').addEventListener('change', handleCiklusStudija);
